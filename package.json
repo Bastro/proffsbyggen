@@ -5,8 +5,11 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url":
+    "url": ""
   },
   "author": "jonas oster, rashed davodi, alexander hagman, jonatan hogberg",
-  "license": ""
+  "license": "",
+  "dependencies": {
+    "hapi": "^7.5.2"
+  }
 }
