@@ -1,0 +1,12 @@
+{
+  "name": "proffsbyggen",
+  "version": "0.0.0",
+  "description": "",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url":
+  },
+  "author": "jonas oster, rashed davodi, alexander hagman, jonatan hogberg",
+  "license": ""
+}
