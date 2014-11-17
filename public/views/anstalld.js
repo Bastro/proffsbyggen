@@ -84,9 +84,12 @@
       </label>
     </div>
   </div>
-</div>
 
-    <input type="date">
+    jQuery('#datetimepicker3').datetimepicker({
+        format:'d.m.Y H:i',
+        inline:true,
+        lang:'se'
+    });
 
 </form>
 </body>
