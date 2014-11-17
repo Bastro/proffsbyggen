@@ -10,7 +10,9 @@
   "author": "jonas oster, rashed davodi, alexander hagman, jonatan hogberg",
   "license": "",
   "dependencies": {
+    "bcrypt": "^0.8.0",
     "hapi": "^7.5.2",
+    "hapi-auth-basic": "^1.1.1",
     "path": "^0.4.9"
   }
 }
