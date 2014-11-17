@@ -1,5 +1,5 @@
 // Moduler
-var Hapi = require('hapi');
+var Hapi = require('hapi'); // som import för java
 // Server/Hapi inställningar
 var port = 3000;
 var server = new Hapi.Server(port); // Skapar en server som "lyssnar" på port 3000
