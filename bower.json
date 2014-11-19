@@ -1,6 +1,7 @@
 {
   "name": "proffsbyggen",
   "dependencies": {
-    "foundation": "zurb/bower-foundation#~5.4.7"
+    "foundation": "zurb/bower-foundation#~5.4.7",
+    "foundation-datepicker": "~1.1.0"
   }
 }
