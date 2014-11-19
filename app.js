@@ -46,13 +46,6 @@ server.route({
 
 server.route({
     method: 'GET',
-    path: '/admin',
-    handler: function (request, reply) {
-        reply.file('views/admin.html');
-    }
-});
-server.route({
-    method: 'GET',
     path: '/frameworks',
     handler: function (request, reply) {
         reply.file('views/frameworks.html');
