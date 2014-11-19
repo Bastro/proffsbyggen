@@ -2,7 +2,7 @@
 var Hapi = require('hapi'); // som import för java
 var Basic = require('hapi-auth-basic');
 var Path = require('path');
-var Bcrypt = require('bcrypt');
+// var Bcrypt = require('bcrypt'); lägg till sen
 var port = 3000;
 // Server/Hapi inställningar
 var server = new Hapi.Server('localhost', port, { files: { relativeTo: Path.join(__dirname, 'public') } }); // Skapar en server som "lyssnar" på port 3000
