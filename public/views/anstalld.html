@@ -8,14 +8,14 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.4.7/css/foundation.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.4.7/js/vendor/modernizr.js"></script>
-<link rel="stylesheet" type="text/css" href="/jquery.datetimepicker.css"/ >
+<link rel="stylesheet" href="css/jquery.css">
 </head>
 
 <body>
     <div class="row">
      <h1><small>Tidsrapportering</small></h1>
     </div>
-<form>
+<form action="">
   <div class="row">
     <div class="large-6 columns">
       <label>Projekt:
@@ -96,11 +96,18 @@
         <a href="#" class="button">Skicka</a>
     </div>
 </body>
-<script src="js/jquery-1.11.2.custom.js"></script>
-<script src="js/jquery-ui.js"></script>
+<script src="javascript/jquery-1.11.2.custom.js"></script>
+<script src="javascript/jquery-ui.js"></script>
 
 <script>
-    $('#Datum').datepicker();
+   var el = document.createElement('input');
+   el.setAttribute('type','date');
+   //if type is text then and only then should you call the fallback
+   if(el.type === 'text'){
+      $('#date').datepicker({
+         dateFormat:'dd-mm-yy'
+      });
+   }
 </script>
 
 </html>
