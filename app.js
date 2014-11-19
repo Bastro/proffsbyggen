@@ -27,7 +27,62 @@ server.route({
         reply.file('views/index.html');
     }
 });
+
+server.route({
+    method: 'GET',
+    path: '/admin',
+    handler: function (request, reply) {
+        reply.file('views/admin.html');
+    }
+});
+
+server.route({
+    method: 'GET',
+    path: '/anstalld',
+    handler: function (request, reply) {
+        reply.file('views/anstalld.html');
+    }
+});
+
+server.route({
+    method: 'GET',
+    path: '/admin',
+    handler: function (request, reply) {
+        reply.file('views/admin.html');
+    }
+});
+server.route({
+    method: 'GET',
+    path: '/frameworks',
+    handler: function (request, reply) {
+        reply.file('views/frameworks.html');
+    }
+});
+
+server.route({
+    method: 'GET',
+    path: '/KundInfo',
+    handler: function (request, reply) {
+        reply.file('views/KundInfo.html');
+    }
+});
+
+server.route({
+    method: 'GET',
+    path: '/SeRapporter',
+    handler: function (request, reply) {
+        reply.file('views/SeRapporter.html');
+    }
+});
+server.route({
+    method: 'GET',
+    path: '/Skapaanvandare',
+    handler: function (request, reply) {
+        reply.file('views/skapavandare.html');
+    }
+});
 /**
+
  * Startar servern
  * För att starta servern lär ni skriva node app.js i consolen och vara i rätt folder
  */
