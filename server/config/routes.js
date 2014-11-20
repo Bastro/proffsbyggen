@@ -1,56 +1,19 @@
-module.exports = function(server) {
-    //var controller = require(/controllers');
+//var requireDirectory = require('require-directory');
 
-    var routeTable = [
-        {
-            method: 'GET',
-            path: '/',
-            handler: function(request, reply){
-                reply.file('views/index.html');
+// Bootstrap your controllers so you dont have to load them individually. This loads them all into the controller name space. https://github.com/troygoode/node-require-directory
+//var controller = requireDirectory(module, '../controllers');
+
+module.exports = [
+    {
+        method: 'GET',
+        path: '/',
+        handler: {
+            view: {
+                template: 'index',
+                context: {
+                    title: 'My home page'
+                }
             }
         }
-    ];
-    /*first: {
-            method: 'GET',
-            path: '/',
-            handler: function (request, reply) {
-                reply.file('views/index.html');
-            }
-        },
-    admin: {
-            method: 'GET',
-            path: '/admin',
-            handler: function (request, reply) {
-                reply.file('views/admin.html');
-            }
-        },
-    anstalld: {
-            method: 'GET',
-            path: '/anstalld',
-            handler: function (request, reply) {
-                reply.file('views/anstalld.html');
-            }
-        },
-    kundinfo: {
-            method: 'GET',
-            path: '/kundinfo',
-            handler: function (request, reply) {
-                reply.file('views/KundInfo.html');
-            }
-        },
-    rapporter: {
-            method: 'GET',
-            path: '/rapporter',
-            handler: function (request, reply) {
-                reply.file('views/SeRapporter.html');
-            }
-        },
-    skapaanvandare: {
-            method: 'GET',
-            path: '/skapaanvandare',
-            handler: function (request, reply) {
-                reply.file('views/skapavandare.html');
-            }
-        }*/
-    return routeTable;
-}
+    }
+];

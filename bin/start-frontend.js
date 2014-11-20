@@ -11,6 +11,7 @@
 var Hapi = require('hapi');
 var Path = require('path');
 var config = require('../server/config/config'); // Skapat egen Fil med alla config inställningar
+var routes = require('../server/config/routes');
 
 /**
  * Skapar servern
@@ -31,18 +32,7 @@ server.views({
     path: Path.join(__dirname, '../public/views')
 });
 
-server.route({
-    method: 'GET',
-    path: '/',
-    handler: {
-        view: {
-            template: 'index',
-            context: {
-                title: 'My home page'
-            }
-        }
-    }
-});
+module.exports = server;
 
 // Får tag i alla static filer. Css, JS etc.
 server.route({
@@ -54,6 +44,8 @@ server.route({
         }
     }
 });
+
+server.route(routes);
 
 /**
  * Startar servern
