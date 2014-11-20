@@ -5,7 +5,7 @@
 
 # Bower
 ###################
-public/lib/
+#public/lib/ för tillfället sen när alla kan bower tas det bort
 
 # Node
 ###################
