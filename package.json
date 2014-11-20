@@ -16,7 +16,9 @@
     "good-file": "^3.1.0",
     "good-http": "^3.0.1",
     "hapi": "^7.5.2",
+    "hapi-assets": "^0.2.1",
     "hapi-auth-basic": "^1.1.1",
-    "path": "^0.4.9"
+    "path": "^0.4.9",
+    "swig": "^1.4.2"
   }
 }
