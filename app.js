@@ -4,9 +4,11 @@ var Basic = require('hapi-auth-basic');
 var Path = require('path');
 var Good = require('good');
 var Bcrypt = require('bcrypt');
-var port = 3000;
+var config = require('./config/config');
 // Server/Hapi inställningar
-var server = new Hapi.Server('localhost', port, { files: { relativeTo: Path.join(__dirname, 'public') } } ); // Skapar en server som "lyssnar" på port 3000
+var server = new Hapi.Server(config.host, config.port, { files: { relativeTo: Path.join(__dirname, 'public') } } ); // Skapar en server som "lyssnar" på port 3000
+
+console.log(config.port);
 
 // Skapar ett test object för att kolla validate
 var users = {
@@ -35,10 +37,11 @@ server.pack.register(Basic, function (err) {
 
 // Add the server routes
 //server.route(require('./server/routes')); //använder sen
+/*
 server.route({
     method: 'GET',
     path: '/',
-    /*config: { auth: 'simple' },*/
+    config: { auth: 'simple' },
     handler: function (request, reply) {
         reply.file('views/index.html');
     }
@@ -89,7 +92,9 @@ server.route({
     handler: function (request, reply) {
         reply.file('views/skapavandare.html');
     }
-});
+}); */
+
+var routes = require('./config/routes')(server);
 
 var options = {
     opsInterval: 1000,
