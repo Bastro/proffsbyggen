@@ -1,5 +1,6 @@
 config = {};
 
-config.port = 3000;
+config.port = 8000;
+config.host = 'localhost';
 
 module.exports = config;
