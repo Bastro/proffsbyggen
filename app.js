@@ -2,6 +2,7 @@
 var Hapi = require('hapi'); // som import för java
 var Basic = require('hapi-auth-basic');
 var Path = require('path');
+var Good = require('good');
 var Bcrypt = require('bcrypt');
 var port = 3000;
 // Server/Hapi inställningar
@@ -90,6 +91,36 @@ server.route({
     }
 });
 
+var options = {
+    opsInterval: 1000,
+    reporters: [{
+        reporter: require('good-console'),
+        args:[{ log: '*', request: '*' }]
+    }, {
+        reporter: require('good-file'),
+        args: ['./test/fixtures/awesome_log', { ops: '*' }]
+    }, {
+        reporter: require('good-http'),
+        args: ['http://prod.logs:3000', { error: '*' } , {
+            threshold: 20,
+            wreck: {
+                headers: { 'x-api-key' : 12345 }
+            }
+        }]
+    }]
+};
+
+server.pack.register({
+    plugin: require('good'),
+    options: options
+}, function (err) {
+
+   if (err) {
+      console.log(err);
+      return;
+   }
+});
+
 /**
  * Startar servern
  * För att starta servern lär ni skriva node app.js i consolen och vara i rätt folder
@@ -97,12 +128,4 @@ server.route({
 server.start(function () {
     console.log('Server running at:', server.info.uri);
 });
-
-server.on('log', function (event, tags) {
-
-    if (tags.error) {
-        console.log(event);
-    }
-});
-
 // läs mer på http://hapijs.com/tutorials
