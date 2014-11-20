@@ -44,26 +44,16 @@ server.route({
     }
 });
 
-var assetOptions = {
-    development: {
-        js: ['js/one.js', 'js/two.js'],
-        css: ['../public/lib/font-awesome/css/font-awesome.min.css', 'css/two.css']
-    },
-    production: {
-        js: ['js/scripts.js'],
-        css: ['css/styles.css']
+// Får tag i alla static filer. Css, JS etc.
+server.route({
+    method: 'GET',
+    path: '/{param*}',
+    handler: {
+        directory: {
+            path: 'public'
+        }
     }
-}
-
-server.pack.register({
-    register: require('hapi-assets'),
-    options: assetOptions
- }, function (err) {
-
-     if (err) {
-         console.log('Failed loading plugin');
-     }
- });
+});
 
 /**
  * Startar servern
