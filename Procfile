@@ -1,1 +1,1 @@
-web: bin/start-frontend.js
+web: node bin/start-frontend.js
