@@ -1,6 +1,6 @@
 config = {};
 
-config.port = 3000;
+config.port = process.env.PORT || 3000;
 config.host = 'localhost';
 
 module.exports = config;
