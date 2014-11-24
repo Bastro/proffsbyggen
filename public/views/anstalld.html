@@ -1,18 +1,11 @@
-<!doctype html>
-<html class="no-js" lang="en">
+{% extends 'head.html' %}
+{% block script %}
+    {% parent %}
+    <link href="../css/datepicker.css" rel="stylesheet">
+{% endblock %}
+{% block content %}
 
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Foundation 5.4.7 | Welcome</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.4.7/css/foundation.min.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.4.7/js/vendor/modernizr.js"></script>
-<link rel="stylesheet" href="../css/datepicker.css">
-
-</head>
-
-<body>
     <div class="row">
      <h1><small>Tidsrapportering</small></h1>
     </div>
@@ -149,12 +142,11 @@
       </div>
     </div>
   </div>
-
-<h4><></h4>
+<hr>
 
 <div class="row">
     <a href="#" class="button">Skicka</a>
 </div>
-</body>
+{% endblock %}
 
-</html>
+
