@@ -16,7 +16,7 @@ var routes = require('../server/config/routes');
 /**
  * Skapar servern
  */
-var server = new Hapi.Server(config.host, process.env.PORT || 5000);
+var server = new Hapi.Server(config.host, config.server);
 module.exports = server;
 
 // Add the server routes
