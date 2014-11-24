@@ -2,7 +2,7 @@
   "name": "proffsbyggen",
   "version": "0.0.0",
   "description": "",
-  "main": "bin/start.js",
+  "main": "bin/start-frontend.js",
   "repository": {
     "type": "git",
     "url": ""
