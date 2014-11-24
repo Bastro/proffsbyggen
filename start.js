@@ -29,7 +29,7 @@ server.views({
     engines: {
         html: require('swig')
     },
-    path: Path.join(__dirname, '../public/views')
+    path: Path.join(__dirname, './public/views')
 });
 
 module.exports = server;
