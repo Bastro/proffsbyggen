@@ -5,8 +5,9 @@
 
 # Bower
 ###################
-#public/lib/ för tillfället sen när alla kan bower tas det bort
+public/lib/ för tillfället sen när alla kan bower tas det bort
 
 # Node
 ###################
 node_modules
+npm-debug.log
