@@ -10,8 +10,8 @@
  */
 var Hapi = require('hapi');
 var Path = require('path');
-var config = require('../server/config/config'); // Skapat egen Fil med alla config inställningar
-var routes = require('../server/config/routes');
+var config = require('./server/config/config'); // Skapat egen Fil med alla config inställningar
+var routes = require('./server/config/routes');
 
 /**
  * Skapar servern
