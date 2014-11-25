@@ -57,7 +57,7 @@ module.exports = [
         path: '/KundInfo',
         handler: {
             view: {
-                template: 'KundInfo',
+                template: 'kundinfo',
                 context: {
                     title: 'My home page'
                 }
