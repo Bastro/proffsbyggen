@@ -20,7 +20,7 @@
  *
  * Copyright 2014 jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * http://jquery.org/licensedfg
  *
  * http://api.jqueryui.com/category/ui-core/
  */
