@@ -10,13 +10,13 @@
  */
 var Hapi = require('hapi');
 var Path = require('path');
-var config = require('../server/config/config'); // Skapat egen Fil med alla config inställningar
-var routes = require('../server/config/routes');
+var config = require('./server/config/config'); // Skapat egen Fil med alla config inställningar
+var routes = require('./server/config/routes');
 
 /**
  * Skapar servern
  */
-var server = new Hapi.Server(config.host, config.server);
+var server = new Hapi.Server(config.host, config.port);
 module.exports = server;
 
 // Add the server routes
@@ -29,7 +29,7 @@ server.views({
     engines: {
         html: require('swig')
     },
-    path: Path.join(__dirname, '../public/views')
+    path: Path.join(__dirname, './public/views')
 });
 
 module.exports = server;

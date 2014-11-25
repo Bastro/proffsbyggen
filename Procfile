@@ -1,1 +1,1 @@
-web: node bin/start-frontend.js
+worker: node start.js
