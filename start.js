@@ -17,22 +17,18 @@ var routes = require('./server/config/routes');
  * Skapar servern
  */
 var server = new Hapi.Server(config.host, config.port);
+// Exoirterar server object om det behöves någon annan stans
 module.exports = server;
 
-// Add the server routes
-//server.route(require('../server/config/routes'));
 /*
  * Konfigurerar servern
  */
-
 server.views({
     engines: {
         html: require('swig')
     },
     path: Path.join(__dirname, './public/views')
 });
-
-module.exports = server;
 
 // Får tag i alla static filer. Css, JS etc.
 server.route({
@@ -42,6 +38,32 @@ server.route({
         directory: {
             path: 'public'
         }
+    }
+});
+
+/*
+ * MongoDB Plugin settings
+ */
+var dbOpts = {
+    "url": "mongodb://localhost:27017/proffsbyggen",
+    "settings": {
+        "db": {
+            "native_parser": false
+        }
+    }
+};
+
+/*
+ * Registerar plugins
+ */
+server.pack.register({
+    plugin: require('hapi-mongodb'),
+    options: dbOpts
+// Om det blir error, throw och printar ut det
+}, function (err) {
+    if (err) {
+        console.error(err);
+        throw err;
     }
 });
 
