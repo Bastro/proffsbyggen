@@ -1,8 +1,21 @@
 {% extends 'head.html' %} {% block script %} {% parent %}
 <!-- CDN -->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.js"></script>
-<link href="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.css" rel="stylesheet">
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<meta charset="utf-8">
+		<title>Foundation datepicker</title>
+		<meta name="description" content="Port of bootstrap datepicker to Zurb Foundation framework">
+		<meta name="author" content="Peter Beno, najlepsiwebdesigner@gmail.com">
+		<!-- CDN -->
+		<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.js"></script>
+		<link href="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.css" rel="stylesheet">
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+		<!-- foundation start -->
+		<!-- Set the viewport width to device width for mobile -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- Included CSS Files (Compressed) -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.4.7/css/foundation.min.css" />
+<!-- 		<link rel="stylesheet" href="foundation/stylesheets/app.css"> -->
+		<script src="../lib/foundation/js/vendor/modernizr.js"></script>
 <!-- foundation end -->
 <!-- foundation datepicker start -->
 <script src="../javascript/foundation-datepicker.js"></script>
@@ -12,6 +25,7 @@
 <!--[if lt IE 9]>
 			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
+<script src="../lib/jquery/dist/jquery.min.js"></script>
 {% endblock %} {% block content %}
 <div class="row">
     <h1><small>Tidsrapportering</small></h1>
