@@ -41,32 +41,6 @@ server.route({
     }
 });
 
-/*
- * MongoDB Plugin settings
- */
-var dbOpts = {
-    "url": "mongodb://localhost:27017/proffsbyggen",
-    "settings": {
-        "db": {
-            "native_parser": false
-        }
-    }
-};
-
-/*
- * Registerar plugins
- */
-server.pack.register({
-    plugin: require('hapi-mongodb'),
-    options: dbOpts
-// Om det blir error, throw och printar ut det
-}, function (err) {
-    if (err) {
-        console.error(err);
-        throw err;
-    }
-});
-
 server.route(routes);
 
 /**
