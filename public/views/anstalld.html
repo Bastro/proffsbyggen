@@ -1,7 +1,5 @@
 {% extends 'head.html' %} {% block script %} {% parent %}
 <!-- CDN -->
-<script src="../lib/jquery/dist/jquery.min.js"></script>
-<link href="../lib/font-awesome/css/font-awesome.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.js"></script>
 <link href="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.css" rel="stylesheet">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
@@ -36,10 +34,6 @@
             <label>Material från bussen:
                 <input type="text" placeholder="" />
             </label>
-        </div>
-        <div class="large-4 columns">
-            <div class="row collapse">
-            </div>
         </div>
     </div>
 
@@ -92,101 +86,99 @@
             </label>
         </div>
     </div>
+    <div class="row date collapse" id="dp3" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+        <div class="large-2 columns">
+                <input type="text" value="12-02-2012" readonly="">
+        </div>
+        <div class="large-1 columns end">
+            <span class="prefix"><i class="fa fa-calendar"></i></span>
+        </div>
     </div>
-
-    <!--<input type="date" name="Datum">-->
 
 </form>
 
-
-    <div class="row date collapse" id="dp3" data-date="26-11-2014" data-date-format="dd-mm-yyyy">
-        <input class="small-3 columns" size="8" type="text" value="12-02-2012" readonly>
-        <span class="prefix small-3 columns end"><i class="fa fa-calendar"></i></span>
-    </div>
-
-        <script>
-            $(function () {
-                window.prettyPrint && prettyPrint();
-                $('#dp1').fdatepicker({
-                    format: 'mm-dd-yyyy'
-                });
-                $('#dp2').fdatepicker({
-                    closeButton: true
-                });
-                $('#dp3').fdatepicker();
-                $('#dp3').fdatepicker();
-                $('#dp-margin').fdatepicker();
-                $('#dpMonths').fdatepicker();
-                var startDate = new Date(2012, 1, 20);
-                var endDate = new Date(2012, 1, 25);
-                $('#dp4').fdatepicker()
-                    .on('changeDate', function (ev) {
-                        if (ev.date.valueOf() > endDate.valueOf()) {
-                            $('#alert').show().find('strong').text('The start date can not be greater then the end date');
-                        } else {
-                            $('#alert').hide();
-                            startDate = new Date(ev.date);
-                            $('#startDate').text($('#dp4').data('date'));
-                        }
-                        $('#dp4').fdatepicker('hide');
-                    });
-                $('#dp5').fdatepicker()
-                    .on('changeDate', function (ev) {
-                        if (ev.date.valueOf() < startDate.valueOf()) {
-                            $('#alert').show().find('strong').text('The end date can not be less then the start date');
-                        } else {
-                            $('#alert').hide();
-                            endDate = new Date(ev.date);
-                            $('#endDate').text($('#dp5').data('date'));
-                        }
-                        $('#dp5').fdatepicker('hide');
-                    });
-                // implementation of disabled form fields
-                var nowTemp = new Date();
-                var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
-                var checkin = $('#dpd1').fdatepicker({
-                    onRender: function (date) {
-                        return date.valueOf() < now.valueOf() ? 'disabled' : '';
-                    }
-                }).on('changeDate', function (ev) {
-                    if (ev.date.valueOf() > checkout.date.valueOf()) {
-                        var newDate = new Date(ev.date)
-                        newDate.setDate(newDate.getDate() + 1);
-                        checkout.update(newDate);
-                    }
-                    checkin.hide();
-                    $('#dpd2')[0].focus();
-                }).data('datepicker');
-                var checkout = $('#dpd2').fdatepicker({
-                    onRender: function (date) {
-                        return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
-                    }
-                }).on('changeDate', function (ev) {
-                    checkout.hide();
-                }).data('datepicker');
+<script>
+    $(function () {
+        window.prettyPrint && prettyPrint();
+        $('#dp1').fdatepicker({
+            format: 'mm-dd-yyyy'
+        });
+        $('#dp2').fdatepicker({
+            closeButton: true
+        });
+        $('#dp3').fdatepicker();
+        $('#dp3').fdatepicker();
+        $('#dp-margin').fdatepicker();
+        $('#dpMonths').fdatepicker();
+        var startDate = new Date(2012, 1, 20);
+        var endDate = new Date(2012, 1, 25);
+        $('#dp4').fdatepicker()
+            .on('changeDate', function (ev) {
+                if (ev.date.valueOf() > endDate.valueOf()) {
+                    $('#alert').show().find('strong').text('The start date can not be greater then the end date');
+                } else {
+                    $('#alert').hide();
+                    startDate = new Date(ev.date);
+                    $('#startDate').text($('#dp4').data('date'));
+                }
+                $('#dp4').fdatepicker('hide');
             });
-        </script>
-        <script type="text/javascript">
-            var _gaq = _gaq || [];
-            _gaq.push(['_setAccount', 'UA-30989810-2']);
-            _gaq.push(['_trackPageview']);
-            (function () {
-                var ga = document.createElement('script');
-                ga.type = 'text/javascript';
-                ga.async = true;
-                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                var s = document.getElementsByTagName('script')[0];
-                s.parentNode.insertBefore(ga, s);
-            })();
-        </script>
+        $('#dp5').fdatepicker()
+            .on('changeDate', function (ev) {
+                if (ev.date.valueOf() < startDate.valueOf()) {
+                    $('#alert').show().find('strong').text('The end date can not be less then the start date');
+                } else {
+                    $('#alert').hide();
+                    endDate = new Date(ev.date);
+                    $('#endDate').text($('#dp5').data('date'));
+                }
+                $('#dp5').fdatepicker('hide');
+            });
+        // implementation of disabled form fields
+        var nowTemp = new Date();
+        var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+        var checkin = $('#dpd1').fdatepicker({
+            onRender: function (date) {
+                return date.valueOf() < now.valueOf() ? 'disabled' : '';
+            }
+        }).on('changeDate', function (ev) {
+            if (ev.date.valueOf() > checkout.date.valueOf()) {
+                var newDate = new Date(ev.date)
+                newDate.setDate(newDate.getDate() + 1);
+                checkout.update(newDate);
+            }
+            checkin.hide();
+            $('#dpd2')[0].focus();
+        }).data('datepicker');
+        var checkout = $('#dpd2').fdatepicker({
+            onRender: function (date) {
+                return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+            }
+        }).on('changeDate', function (ev) {
+            checkout.hide();
+        }).data('datepicker');
+    });
+</script>
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-30989810-2']);
+    _gaq.push(['_trackPageview']);
+    (function () {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+</script>
 
 
-        <br>
-        <br>
+<br>
 
-        <div class="row">
-            <center>
-                <a href="#" class="button large">Skicka</a>
-            </center>
-        </div>
-        {% endblock %}
+<div class="row">
+    <center>
+        <a href="#" class="button large">Skicka</a>
+    </center>
+</div>
+{% endblock %}

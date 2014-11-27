@@ -4,12 +4,19 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Foundation 5.4.7 | Welcome</title>
+    <title>Proffsbyggen</title>
 
     {% block script %}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.4.7/css/foundation.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.4.7/js/vendor/modernizr.js"></script>
     <link href="../lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Foundation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.4.7/css/foundation.min.css" />
+    <link href="../lib/foundation/js/vendor/modernizr.js">
+    <script src="../lib/foundation/js/vendor/jquery.js"></script>
+    <script src="../lib/foundation/js/foundation.min.js"></script>
+    <script src="../lib/foundation/js/foundation/foundation.topbar.js"></script>
+    <script>
+    $(document).foundation();
+    </script>
     {% endblock %}
 </head>
 

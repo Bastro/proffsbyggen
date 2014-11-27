@@ -1,14 +1,28 @@
-<div class="icon-bar five-up">
-    <a class="item" href="SkapaAnvandare">
-        <i class="fa fa-user"></i>
-        <label>Skapa ny användare</label>
-    </a>
-    <a class="item" href="KundInfo">
-        <i class="fa fa-info"></i>
-        <label>Kundformulär</label>
-    </a>
-    <a class="item" href="admin">
-        <i class="fa fa-folder-open"></i>
-        <label>Rapporter</label>
-    </a>
-</div>
+<!-- Navigation -->
+<!-- Var tvugen och skaffa en ny navbar eftersom vi använde Icon Bar istället för Top Bar som man har för navigation, Icon Bar blev inge bra i mobilen -->
+<nav class="top-bar" data-topbar role="navigation">
+    <ul class="title-area">
+        <li class="name"><!-- Tom, vi använder ingen title i navbaren --></li>
+        <!-- Visas när man använder mobilen -->
+        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+    </ul>
+    <section class="top-bar-section">
+        <ul class="left">
+            <li>
+                <a href="SkapaAnvandare">
+                    <i class="fa fa-user"></i>&nbsp;&nbsp;Skapa ny användare
+                </a>
+            </li>
+            <li>
+                <a href="KundInfo">
+                    <i class="fa fa-info"></i>&nbsp;&nbsp;Kundformulär
+                </a>
+            </li>
+            <li>
+                <a href="admin">
+                    <i class="fa fa-folder-open"></i>&nbsp;&nbsp;Rapporter
+                </a>
+            </li>
+        </ul>
+    </section>
+</nav>
