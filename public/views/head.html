@@ -10,13 +10,6 @@
     <link href="../lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- Foundation -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.4.7/css/foundation.min.css" />
-    <link href="../lib/foundation/js/vendor/modernizr.js">
-    <script src="../lib/foundation/js/vendor/jquery.js"></script>
-    <script src="../lib/foundation/js/foundation.min.js"></script>
-    <script src="../lib/foundation/js/foundation/foundation.topbar.js"></script>
-    <script>
-    $(document).foundation();
-    </script>
     {% endblock %}
 </head>
 
@@ -25,6 +18,15 @@
         {% include 'navbar.html' %}
     {% endblock %}
     {% block content %}{% endblock %}
+    <!-- JS Scripts -->
+    <!-- Man har JS filer längst ner för att content/DOM ska hinna ladda innan man gör ändringar på den med JS -->
+    <link href="../lib/foundation/js/vendor/modernizr.js">
+    <script src="../lib/foundation/js/vendor/jquery.js"></script>
+    <script src="../lib/foundation/js/foundation.min.js"></script>
+    <script src="../lib/foundation/js/foundation/foundation.topbar.js"></script>
+    <script>
+    $(document).foundation();
+    </script>
 </body>
 
 </html>
