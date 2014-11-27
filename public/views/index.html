@@ -1,6 +1,10 @@
 
 {% extends 'head.html' %}
 {% block navbar %}{% endblock %}
+{% block script %}
+    {% parent %}
+    <link href="../css/index.css">
+{% endblock %}
 {% block content %}
     <div id="login" class="row">
         <center>
