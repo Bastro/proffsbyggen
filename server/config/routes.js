@@ -49,7 +49,7 @@ module.exports = [
     },
     {
         method: 'GET',
-        path: '/KundInfo',
+        path: '/kundinfo',
         handler: {
             view: {
                 template: 'kundinfo',
