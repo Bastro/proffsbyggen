@@ -1,5 +1,12 @@
 {% extends 'head.html' %}
-{% block content %}
+{% block script %} {% parent %}
+
+<link rel="stylesheet" href="responsive-tables.css">
+<script src="javascripts/jquery.min.js"></script>
+<script src="responsive-tables.js"></script>
+
+{% endblock %} {% block content %}
+
 <div class="row">
     <h1><small>Rapporter</small></h1>
 </div>
@@ -30,7 +37,7 @@
     </tbody>
 </table>
 
-<table class="small-10 columns">
+<table class="responsive">
     <thead>
         <tr>
             <th width="150">Användare</th>
