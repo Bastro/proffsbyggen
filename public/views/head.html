@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html lang="sv-se">
 
 <head>
     <meta charset="utf-8" />
@@ -20,13 +20,15 @@
     {% block content %}{% endblock %}
     <!-- JS Scripts -->
     <!-- Man har JS filer längst ner för att content/DOM ska hinna ladda innan man gör ändringar på den med JS -->
+    {% block jsbody %}
     <script src="../lib/foundation/js/vendor/modernizr.js"></script>
-    <script src="../lib/foundation/js/vendor/jquery.js"></script>
+    <script src="../js/jquery-1.11.1.min.js"></script>
     <script src="../lib/foundation/js/foundation.min.js"></script>
     <script src="../lib/foundation/js/foundation/foundation.topbar.js"></script>
     <script>
     $(document).foundation();
     </script>
+    {% endblock %}
 </body>
 
 </html>

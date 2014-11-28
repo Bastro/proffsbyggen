@@ -23,7 +23,7 @@
  * limitations under the License.
  * ========================================================= */
 
-!function( $ ) {
+$( document ).ready(function() {
 
 	function UTCDate(){
 		return new Date(Date.UTC.apply(Date, arguments));
@@ -1119,4 +1119,4 @@
 
 	$.fn.fdatepicker.DPGlobal = DPGlobal;
 
-}( window.jQuery );
+}( window.jQuery )
