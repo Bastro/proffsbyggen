@@ -132,6 +132,12 @@ app.get('/admin', passportConf.isAuthenticated, homeController.admin);
 app.get('/anstalld', passportConf.isAuthenticated, homeController.anstalld);
 app.get('/kundform', passportConf.isAuthenticated, passportConf.isAdministrator, homeController.kundForm); // admin funkar inte än
 
+// Tid i millesekunder
+var minute = 1000 * 60;   //     60000
+var hour = (minute * 60); //   3600000
+var day  = (hour * 24);   //  86400000
+var week = (day * 7);     // 604800000
+
 // Gör så alla sidor har tillgång till allt i public
 app.use(express.static(__dirname + '/public', { maxAge: week }));
 
