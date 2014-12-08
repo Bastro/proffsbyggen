@@ -119,8 +119,6 @@ app.use(express.static(path.join(__dirname, 'public'), {
 app.set('view cache', false);
 swig.setDefaults({ cache: false });
 
-console.log(config.week);
-
 /**
  * Main routes.
  */
