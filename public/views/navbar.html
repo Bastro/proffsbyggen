@@ -12,13 +12,14 @@
         </ul>
         <section class="top-bar-section">
             <ul class="left">
+                {% if user.type == 'admin' %}
                 <li>
-                    <a href="skapaanvandare">
+                    <a href="nyanvandare">
                         <i class="fa fa-user"></i>&nbsp;&nbsp;Skapa ny användare
                     </a>
                 </li>
                 <li>
-                    <a href="kundinfo">
+                    <a href="kundform">
                         <i class="fa fa-info"></i>&nbsp;&nbsp;Kundformulär
                     </a>
                 </li>
@@ -27,10 +28,11 @@
                         <i class="fa fa-folder-open"></i>&nbsp;&nbsp;Rapporter
                     </a>
                 </li>
+                {% endif %}
             </ul>
             <ul class="right">
                 <li class="has-form">
-                    <a href="#" class="button">Logga ut</a>
+                    <a href="/logout" class="button">Logga ut</a>
                 </li>
             </ul>
         </section>

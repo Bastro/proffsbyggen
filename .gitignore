@@ -1,13 +1,5 @@
-# Vilka filer som inte skickas till github
-# Onödigt att skicka upp filer man får genom att använda sig utav package.json & bower.json
-# Som te.x npm install & bower install
-# lite info https://help.github.com/articles/ignoring-files/
-
-# Bower
-###################
-public/lib/
-
-# Node
-###################
-node_modules
+# Vilka filer som git ska ignora
+public/lib
 npm-debug.log
+node_modules
+

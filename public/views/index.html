@@ -1,12 +1,18 @@
 
 {% extends 'head.html' %}
-{% block navbar %}{% endblock %}
+{% block navbar %}
+{% endblock %}
+{% block script %}
+    {% parent %}
+    <link href="../css/index.css" rel="stylesheet">
+{% endblock %}
 {% block content %}
-    <div id="login" class="row">
+<form method="post" id="login">
+    <div class="row">
         <center>
             <div class="large-6 large-centered columns end">
                 <label><i class="fa fa-user"></i>&nbsp;Användarnamn:
-                    <input type="text" placeholder="" />
+                    <input type="text" name="username" placeholder="" />
                 </label>
             </div>
         </center>
@@ -15,11 +21,11 @@
         <center>
             <div class="large-6 large-centered columns end">
                 <label>Lösenord:
-                    <input TYPE=PASSWORD NAME="mypassword">
+                    <input type="password" name="password"/>
                 </label>
-                <center><a href="#" class="button">Logga in</a></center>
+               <input class="button" type="submit" value="Log In"/>
             </div>
         </center>
     </div>
+</form>
 {% endblock %}
-
