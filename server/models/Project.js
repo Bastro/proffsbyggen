@@ -10,7 +10,12 @@ var projectSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    customer: [{ firstName: String, lastName: String, personalCode: String , email: String}],
+    customer: [{
+        firstName: String,
+        lastName: String,
+        personalCode: String,
+        email: String
+    }],
     adress: {
         adress: String,
         zipCode: Number,
@@ -20,7 +25,16 @@ var projectSchema = new mongoose.Schema({
         rotdeduction: String,
         organizationNumber: String,
         apartmentRental: Number // Lägenhetsnummer
-    }
+    },
+
+    jobs: [{
+        username: String,
+        workActivites: String,
+        busMaterials: String,
+        hours: String,
+        trips: String,
+        date: String
+    }]
 });
 
 module.exports = mongoose.model('Project', projectSchema);

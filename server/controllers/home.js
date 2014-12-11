@@ -17,4 +17,5 @@ exports.anstalld = function (req, res) {
     res.render('anstalld', {
         title: 'anstalld'
     });
+    console.log(req.user);
 };

@@ -26,6 +26,7 @@ var expressValidator = require('express-validator');    // https://github.com/ct
 var swig = require('swig');                             // http://paularmstrong.github.io/swig/
 var config = require('./server/config/config');
 
+
 /**
  * Inkluderar alla kontrollers, servern kommer använda sig av MVC design (Model, View, Controller)
  */
@@ -47,6 +48,12 @@ var passportConf = require('./server/config/passport');
  * man använder middleware genom methoden use på express server. Vilket i det här fallet ser ut såhär "app.use()".
  */
 var app = express();
+
+/*
+
+*/
+app.locals.date = require('moment');
+
 
 /**
  * Anslutar till databasen.
@@ -126,13 +133,15 @@ swig.setDefaults({ cache: false });
 app.get('/', userController.getLogin);
 app.post('/', userController.postLogin);
 app.get('/logout', userController.logout);
-app.get('/nyanvandare', passportConf.isAuthenticated, userController.getSignup);
+app.get('/nyanvandare', passportConf.isAuthenticated,userController.getSignup);
 app.post('/nyanvandare', passportConf.isAuthenticated, userController.postSignup);
 
 app.get('/admin', passportConf.isAuthenticated, homeController.admin);
 app.get('/anstalld', passportConf.isAuthenticated, homeController.anstalld);
 app.get('/kundform', passportConf.isAuthenticated, passportConf.isAdministrator, homeController.kundForm); // admin funkar inte än
 app.post('/kundform', passportConf.isAuthenticated, passportConf.isAdministrator, projectController.postProject);
+app.post('/anstalld', passportConf.isAuthenticated, passportConf.isAdministrator,
+projectController.postJob);
 
 // Tid i millesekunder
 var minute = 1000 * 60;   //     60000
