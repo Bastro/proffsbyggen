@@ -31,6 +31,7 @@ var config = require('./server/config/config');
  */
 var homeController = require('./server/controllers/home');
 var userController = require('./server/controllers/user');
+var projectController = require('./server/controllers/project');
 
 /**
  * Konfiguration filer
@@ -131,6 +132,7 @@ app.post('/nyanvandare', passportConf.isAuthenticated, userController.postSignup
 app.get('/admin', passportConf.isAuthenticated, homeController.admin);
 app.get('/anstalld', passportConf.isAuthenticated, homeController.anstalld);
 app.get('/kundform', passportConf.isAuthenticated, passportConf.isAdministrator, homeController.kundForm); // admin funkar inte än
+app.post('/kundform', passportConf.isAuthenticated, passportConf.isAdministrator, projectController.postProject);
 
 // Tid i millesekunder
 var minute = 1000 * 60;   //     60000

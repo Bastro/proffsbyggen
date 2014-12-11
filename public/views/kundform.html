@@ -1,133 +1,133 @@
-{% extends 'head.html' %}
-{% block content %}
+{% extends 'head.html' %} {% block content %}
+<div class="row">
+    <h1 class="center"><small>Kund Information</small></h1>
+</div>
+<form method="POST">
     <div class="row">
-        <h1 class="center"><small>Kund Information</small></h1>
+        <div class="large-6 columns">
+            <label>Projekt:
+                <input type="text" placeholder="" name="name" />
+            </label>
+            <input id="checkbox1" type="checkbox" name="private">
+            <label for="checkbox1">Privat</label>
+        </div>
     </div>
-    <form>
-        <div class="row">
-            <div class="large-6 columns">
-                <label>Projekt:
-                    <input type="text" placeholder="" />
-                </label>
-                <input id="checkbox1" type="checkbox">
-                <label for="checkbox1">Privat</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="large-6 columns">
-                <label>Namn:
-                    <input type="text" placeholder="" />
-                </label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="large-6 columns">
-                <label>Personnummer:
-                    <input type="text" placeholder="" />
-                </label>
-            </div>
-        </div>
-        <div class="large-4 columns">
-            <div class="row collapse">
-            </div>
-        </div>
-        <div class="row">
-            <div class="large-6 columns">
-                <label>Efternamn:
-                    <input type="text" placeholder="" />
-                </label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="large-6 columns">
-                <label>Namn:
-                    <input type="text" placeholder="" />
-                </label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="large-6 columns">
-                <label>Personnummer:
-                    <input type="text" placeholder="" />
-                </label>
-            </div>
-        </div>
-        <div class="large-4 columns">
-            <div class="row collapse">
-            </div>
-        </div>
-        <div class="row">
-            <div class="large-6 columns">
-                <label>Efternamn:
-                    <input type="text" placeholder="" />
-                </label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="large-6 columns">
-                <label>Adress:
-                    <input type="text" placeholder="" />
-                </label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="large-6 columns">
-                <label>Postnummer:
-                    <input type="text" placeholder="" />
-                </label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="large-6 columns">
-                <label>Ort:
-                    <input type="text" placeholder="" />
-                </label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="large-6 columns">
-                <label>Telefonnummer:
-                    <input type="text" placeholder="" />
-                </label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="large-6 columns">
-                <label>Fastighetsbeteckning:
-                    <input type="text" placeholder="" />
-                </label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="large-6 columns">
-                <label>Rotavdrag:
-                    <input type="text" placeholder="" />
-                </label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="large-6 columns">
-                <label>Mail:
-                    <input type="text" placeholder="" />
-                </label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="large-6 columns">
-                <label>Org nummer:
-                    <input type="text" placeholder="" />
-                </label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="large-6 columns">
-                <label>Lägenhets nummer:
-                    <input type="text" placeholder="" />
-                </label>
-            </div>
-        </div>
-    </form>
     <div class="row">
-        <center><a href="#" class="button">Spara</a></center>
+        <div class="large-6 columns">
+            <label>Förnamn:
+                <input type="text" placeholder="" name="firstName1" />
+            </label>
+        </div>
     </div>
+    <div class="row">
+        <div class="large-6 columns">
+            <label>Personnummer:
+                <input type="text" placeholder="" name="personalCode1" />
+            </label>
+        </div>
+    </div>
+    <div class="large-4 columns">
+        <div class="row collapse">
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-6 columns">
+            <label>Efternamn:
+                <input type="text" placeholder="" name="lastName1" />
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-6 columns">
+            <label>Förnamn:
+                <input type="text" placeholder="" name="firstname2" />
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-6 columns">
+            <label>Personnummer:
+                <input type="text" placeholder="" name="personalCode2" />
+            </label>
+        </div>
+    </div>
+    <div class="large-4 columns">
+        <div class="row collapse">
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-6 columns">
+            <label>Efternamn:
+                <input type="text" placeholder="" name="lastName2"/>
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-6 columns">
+            <label>Adress:
+                <input type="text" placeholder="" name="adress" />
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-6 columns">
+            <label>Postnummer:
+                <input type="text" placeholder="" name="zipCode" />
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-6 columns">
+            <label>Ort:
+                <input type="text" placeholder="" name="city" />
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-6 columns">
+            <label>Telefonnummer:
+                <input type="text" placeholder="" name="phoneNumber" />
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-6 columns">
+            <label>Fastighetsbeteckning:
+                <input type="text" placeholder="" name="cadastral" />
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-6 columns">
+            <label>Rotavdrag:
+                <input type="text" placeholder="" name="rotdeduction" />
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-6 columns">
+            <label>Mail:
+                <input type="text" placeholder="" name="email" />
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-6 columns">
+            <label>Org nummer:
+                <input type="text" placeholder="" name="organizationNumber" />
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-6 columns">
+            <label>Lägenhets nummer:
+                <input type="text" placeholder="" name="apartmentRental" />
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <center><input class="button" type="submit" value="Spara"/></a>
+        </center>
+    </div>
+</form>
 {% endblock %}
