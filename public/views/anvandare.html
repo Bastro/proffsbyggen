@@ -1,0 +1,15 @@
+{% extends 'head.html' %} {% block content %}
+<p>hej</p>
+<script>
+    var userListData = [];
+    console.log('yo');
+    $(document).ready(function () {
+            function populateTable() {
+                // Empty content string
+                var tableContent = '';
+                // jQuery AJAX call for JSON
+                $.getJSON('/accountlist', function (data) {
+                    console.log('succes');
+                }
+</script>
+{% endblock %}

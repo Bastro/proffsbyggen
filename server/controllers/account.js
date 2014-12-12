@@ -13,7 +13,7 @@
      res.render('anvandare', {
          title: 'accounts'
      });
- });
+ };
 
  /**
   * GET /accountlist
@@ -26,7 +26,7 @@
          }
          res.json(items);
      });
- });
+ };
 
  /*exports.anstalld = function (req, res) {
     res.render('anstalld', {
