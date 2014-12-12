@@ -50,16 +50,9 @@ var passportConf = require('./server/config/passport');
 var app = express();
 
 /*
-<<<<<<< HEAD
  *
  */
 app.locals.moment = require('moment');
-=======
-
-*/
-app.locals.date = require('moment');
->>>>>>> origin/master
-
 
 /**
  * Anslutar till databasen.
