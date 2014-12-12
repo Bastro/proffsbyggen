@@ -54,7 +54,8 @@ exports.postProject = function (req, res, next) {
             rotdeduction: req.body.rotdeduction,
             organizationNumber: req.body.organizationNumber,
             apartmentRental: req.body.apartmentRental // Lägenhetsnummer
-        }
+        },
+        jobs: []
     });
 
     Project.findOne({
@@ -70,6 +71,44 @@ exports.postProject = function (req, res, next) {
             if (err) return next(err);
             console.log('succes');
         });
+    });
+
+};
+
+exports.postJob = function (req, res, next) {
+    req.assert('project', '');
+    req.assert('workActivities', '');
+    req.assert('busMaterials', '');
+    req.assert('hours', '');
+    req.assert('trips', '');
+    req.assert('date', '');
+
+
+    var errors = req.validationErrors();
+
+    if (errors) {
+        req.flash('errors', errors);
+        return res.redirect('/');
+    }
+
+    var job = {
+        username: req.user.username,
+        workActivities: req.body.workActivites,
+        busMaterials: req.body.busMaterials,
+        hours: req.body.hours,
+        trips: req.body.trips,
+        date: req.body.date
+    };
+
+
+    Project.findOneAndUpdate({
+        name: req.body.project
+    }, { $push: { jobs: job } } ,function(err){
+        if (err) {
+            return next(err);
+        } else {
+            console.log("Successfully added");
+        }
     });
 
 };

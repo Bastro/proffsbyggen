@@ -1,106 +1,103 @@
-{% extends 'head.html' %}
-{% block jsbody %}
-    {% parent %}
-    <script src="http://foundation-datepicker.peterbeno.com/js/foundation-datepicker.js"></script>
-    <link rel="stylesheet" href="http://foundation-datepicker.peterbeno.com/stylesheets/foundation-datepicker.css">
-    <script>
-        $(function() {
-            $('#dp3').fdatepicker({
-                language: "sv",
-                todayHighlight: true
-            });
+{% extends 'head.html' %} {% block jsbody %} {% parent %}
+<script src="http://foundation-datepicker.peterbeno.com/js/foundation-datepicker.js"></script>
+<link rel="stylesheet" href="http://foundation-datepicker.peterbeno.com/stylesheets/foundation-datepicker.css">
+<script>
+    $(function () {
+        $('#dp3').fdatepicker({
+            language: "sv",
+            todayHighlight: true
         });
-    </script>
-{% endblock %}
-{% block content %}
+    });
+</script>
+{% endblock %} {% block content %}
 <div class="row">
     <h1><small>Tidsrapportering</small></h1>
 </div>
-<form action="">
-    <div class="row">
-        <div class="large-6 columns">
-            <label>Projekt:
-                <input type="text" placeholder="" />
-            </label>
+<form method="POST">
+    <form action="">
+        <div class="row">
+            <div class="large-6 columns">
+                <label>Projekt:
+                    <input type="text" placeholder="" name="project" />
+                </label>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="large-6 columns">
-            <label>Arbetsmoment:
-                <input type="text" placeholder="" />
-            </label>
+        <div class="row">
+            <div class="large-6 columns">
+                <label>Arbetsmoment:
+                    <input type="text" placeholder="" name="workActivities" />
+                </label>
+            </div>
+            <div class="large-6 columns">
+                <label>Material från bussen:
+                    <input type="text" placeholder="" name="busMaterials" />
+                </label>
+            </div>
         </div>
-        <div class="large-6 columns">
-            <label>Material från bussen:
-                <input type="text" placeholder="" />
-            </label>
-        </div>
-    </div>
 
 
-    <div class="row">
-        <div class="large-2 columns">
-            <label>Antal Timmar:
-                <select>
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                    <option value="16">16</option>
-                    <option value="17">17</option>
-                </select>
-            </label>
-            <label>Antal Resor:
-                <select>
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                    <option value="16">16</option>
-                    <option value="17">17</option>
-                </select>
-            </label>
+        <div class="row">
+            <div class="large-2 columns">
+                <label>Antal Timmar:
+                    <select name="hours">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                    </select>
+                </label>
+                <label>Antal Resor:
+                    <select name="trips">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                    </select>
+                </label>
+            </div>
         </div>
-    </div>
-    <div class="row date" id="dp3" data-date="2014-11-28" data-date-format="yyyy-mm-dd">
-        <div class="large-2 small-6 columns" style="padding-right:0">
-            <input type="text" value="2014-11-28" readonly="">
+        <div class="row date" id="dp3" data-date="{{ moment(Date.now()).format('YYYY/MM/DD') }}" data-date-format="yyyy-mm-dd">
+            <div class="large-2 small-6 columns" style="padding-right:0">
+                <input type="text" value="{{ moment(Date.now()).format('YYYY-MM-DD') }}" readonly="" name="date">
+            </div>
+            <div class="large-1 small-6 columns end" style="padding-left:0">
+                <span class="prefix"><i class="fa fa-calendar"></i></span>
+            </div>
         </div>
-        <div class="large-1 small-6 columns end" style="padding-left:0">
-            <span class="prefix"><i class="fa fa-calendar"></i></span>
-        </div>
-    </div>
 
+        <div class="row">
+            <center>
+                <input class="button" type="submit" value="Skicka" />
+            </center>
+        </div>
+    </form>
 </form>
-<br>
-
-<div class="row">
-    <center>
-        <a href="#" class="button large">Skicka</a>
-    </center>
-</div>
-{% endblock %}
+<br>{% endblock %}
