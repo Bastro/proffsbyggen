@@ -50,9 +50,15 @@ var passportConf = require('./server/config/passport');
 var app = express();
 
 /*
+<<<<<<< HEAD
  *
  */
 app.locals.moment = require('moment');
+=======
+
+*/
+app.locals.date = require('moment');
+>>>>>>> origin/master
 
 
 /**
@@ -141,6 +147,7 @@ app.get('/anstalld', passportConf.isAuthenticated, homeController.anstalld);
 app.get('/kundform', passportConf.isAuthenticated, passportConf.isAdministrator, homeController.kundForm); // admin funkar inte än
 app.post('/kundform', passportConf.isAuthenticated, passportConf.isAdministrator, projectController.postProject);
 app.post('/anstalld', projectController.postJob);
+
 
 // Tid i millesekunder
 var minute = 1000 * 60;   //     60000

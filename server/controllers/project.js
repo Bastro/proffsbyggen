@@ -100,7 +100,6 @@ exports.postJob = function (req, res, next) {
         date: req.body.date
     };
 
-
     Project.findOneAndUpdate({
         name: req.body.project
     }, { $push: { jobs: job } } ,function(err){
@@ -110,5 +109,4 @@ exports.postJob = function (req, res, next) {
             console.log("Successfully added");
         }
     });
-
 };
