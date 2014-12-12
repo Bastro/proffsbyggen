@@ -33,6 +33,7 @@ var config = require('./server/config/config');
 var homeController = require('./server/controllers/home');
 var userController = require('./server/controllers/user');
 var projectController = require('./server/controllers/project');
+var accountController = require('./server/controllers/account');
 
 /**
  * Konfiguration filer
@@ -134,12 +135,17 @@ app.post('/', userController.postLogin);
 app.get('/logout', userController.logout);
 app.get('/nyanvandare', passportConf.isAuthenticated,userController.getSignup);
 app.post('/nyanvandare', passportConf.isAuthenticated, userController.postSignup);
+app.post('/account/delete', passportConf.isAuthenticated, userController.postDeleteAccount);
 
 app.get('/admin', passportConf.isAuthenticated, homeController.admin);
 app.get('/anstalld', passportConf.isAuthenticated, homeController.anstalld);
 app.get('/kundform', passportConf.isAuthenticated, passportConf.isAdministrator, homeController.kundForm); // admin funkar inte än
+
 app.post('/kundform', passportConf.isAuthenticated, passportConf.isAdministrator, projectController.postProject);
 app.post('/anstalld', projectController.postJob);
+
+app.get('/anvandare', accountController.accounts);
+app.get('/accountlist', accountController.accountlist);
 
 
 // Tid i millesekunder

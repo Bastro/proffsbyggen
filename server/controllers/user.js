@@ -116,3 +116,18 @@ exports.postSignup = function (req, res, next) {
         });
     });
 };
+
+/**
+ *
+ */
+exports.postDeleteAccount = function (req, res, next) {
+    User.remove({
+        _id: req.user.id
+    }, function (err) {
+        if (err) return next(err);
+        req.flash('info', {
+            msg: 'Kontot har blivit deletat.'
+        });
+        console.log('deleted konto');
+    });
+};
