@@ -18,3 +18,9 @@ exports.anstalld = function (req, res) {
         title: 'anstalld'
     });
 };
+
+exports.projekt = function (req, res) {
+    res.render('projekt', {
+       title: 'projekt'
+    });
+};

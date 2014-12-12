@@ -1,18 +1,43 @@
-{% extends 'head.html' %}
-{% block content %}
+{% extends 'head.html' %} {% block content %}
+<div class="row">
+    <h1><small>Användare</small></h1>
+</div>
+<div class="row">
+    <table>
+        <thead>
+            <tr>
+                <th width="500">Användarnamn</th>
+                <th width="500">Befogenhet</th>
+                <th width="500">Ta bort</th>
+            </tr>
+        </thead>
+        <tbody id="userList">
 
-{% endblock %}
-{% block jsbody %}
-    {% parent %}
-    <script>
-        $(document).ready(function () {
+        </tbody>
+    </table>
+</div>
 
-            $.getJSON('/accountlist', function (data) {
-                // Stick our user data array into a userlist variable in the global object
-                userListData = data;
-                console.log(data);
+{% endblock %} {% block jsbody %} {% parent %}
+<script>
+    $(document).ready(function () {
+
+        $.getJSON('/accountlist', function (data) {
+
+            console.log(data);
+
+            var tableContent = '';
+
+            $.each(data, function(){
+                tableContent += '<tr>';
+                    tableContent += '<td>' + this.username + '</td>';
+                    tableContent += '<td>' + this.type + '</td>';
+                    tableContent += '<td>Ta bort!</td>';
+                tableContent += '</tr>'
             });
+
+            $('#userList').append(tableContent);
         });
-    </script>
+    });
+</script>
 {% endblock %}
 

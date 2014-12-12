@@ -140,6 +140,7 @@ app.post('/account/delete', passportConf.isAuthenticated, userController.postDel
 app.get('/admin', passportConf.isAuthenticated, homeController.admin);
 app.get('/anstalld', passportConf.isAuthenticated, homeController.anstalld);
 app.get('/kundform', passportConf.isAuthenticated, passportConf.isAdministrator, homeController.kundForm); // admin funkar inte än
+app.get('/projekt', passportConf.isAuthenticated, homeController.projekt);
 
 app.post('/kundform', passportConf.isAuthenticated, passportConf.isAdministrator, projectController.postProject);
 app.post('/anstalld', projectController.postJob);
