@@ -21,11 +21,7 @@ exports.anstalld = function (req, res) {
 
 exports.projekt = function (req, res) {
     res.render('projekt', {
-<<<<<<< HEAD
-       title: 'projekt' 
-    });  
-=======
        title: 'projekt'
     });
->>>>>>> origin/master
+
 };
