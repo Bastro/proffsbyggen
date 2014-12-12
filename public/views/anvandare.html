@@ -1,15 +1,18 @@
-{% extends 'head.html' %} {% block content %}
-<p>hej</p>
-<script>
-    var userListData = [];
-    console.log('yo');
-    $(document).ready(function () {
-            function populateTable() {
-                // Empty content string
-                var tableContent = '';
-                // jQuery AJAX call for JSON
-                $.getJSON('/accountlist', function (data) {
-                    console.log('succes');
-                }
-</script>
+{% extends 'head.html' %}
+{% block content %}
+
 {% endblock %}
+{% block jsbody %}
+    {% parent %}
+    <script>
+        $(document).ready(function () {
+
+            $.getJSON('/accountlist', function (data) {
+                // Stick our user data array into a userlist variable in the global object
+                userListData = data;
+                console.log(data);
+            });
+        });
+    </script>
+{% endblock %}
+

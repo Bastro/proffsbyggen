@@ -1,4 +1,5 @@
- /**
+var User = require('../models/User');
+/**
   * GET /accounts
   * Render accounts page
   */
