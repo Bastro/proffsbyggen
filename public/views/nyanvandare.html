@@ -1,24 +1,42 @@
 {% extends 'head.html' %}
 {% block content %}
 <form method="POST">
-<div class="row">
-    <div class="large-6 large-centered columns end">
-        <h1><small>Skapa ny användare</small></h1>
-        <label>Användarnamn:
-            <input type="text" name="username" placeholder="" />
-        </label>
+    <!-- row -->
+    <div class="row">
+        <div class="large-6 large-centered columns end">
+            <h1><small>Skapa ny användare</small></h1>
+        </div>
     </div>
-</div>
-
-<div class="row">
-    <div class="large-6 large-centered columns end">
-        <label>Lösenord:
-            <input type="password" name="password" placeholder="" />
-        </label>
-        <center>
-            <input type="submit" class="button" placeholder="" />
-        </center>
+    <!-- row -->
+    <div class="row">
+        <div class="large-6 large-centered columns end">
+            <label>Användarnamn:
+                <input type="text" name="username" placeholder="" />
+            </label>
+        </div>
     </div>
-</div>
+    <!-- row -->
+    <div class="row">
+        <div class="large-6 large-centered columns end">
+            <label>Lösenord:
+                <input type="password" name="password" placeholder="" />
+            </label>
+        </div>
+    </div>
+    <!-- row -->
+    <div class="row">
+        <div class="large-6 large-centered columns end">
+        <!-- Inkluderar flash.html som innehåller hur alla felmeddelande ska se ut både tex och html -->
+        {% include 'flash.html' %}
+        </div>
+    </div>
+    <!-- row -->
+    <div class="row">
+        <div class="large-6 large-centered columns end">
+            <center>
+                <input type="submit" class="button" placeholder="" />
+            </center>
+        </div>
+    </div>
 </form>
 {% endblock %}

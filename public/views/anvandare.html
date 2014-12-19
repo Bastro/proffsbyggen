@@ -1,25 +1,29 @@
 {% extends 'head.html' %} {% block content %}
 <div class="row">
-    <h1><small>Användare</small></h1>
+    <h1 class="large-12 small-centered columns"><small>Användare</small></h1>
 </div>
 <div class="row">
-    <table>
+    <div class="columns">
+    <table class="width-100">
         <thead>
             <tr>
-                <th width="500">Användarnamn</th>
-                <th width="500">Befogenhet</th>
-                <th width="500">Ta bort</th>
+                <th>Användarnamn</th>
+                <th>Befogenhet</th>
+                <th><center>Ta bort</center></th>
             </tr>
         </thead>
         <tbody id="userList">
 
         </tbody>
     </table>
+    </div>
 </div>
-
 {% endblock %} {% block jsbody %} {% parent %}
 <script>
     $(document).ready(function () {
+
+        // Delete User link click
+        $('#userList').on('click', 'td a.linkdeleteuser', deleteUser);
 
         $.getJSON('/accountlist', function (data) {
 
@@ -31,12 +35,18 @@
                 tableContent += '<tr>';
                     tableContent += '<td>' + this.username + '</td>';
                     tableContent += '<td>' + this.type + '</td>';
-                    tableContent += '<td>Ta bort!</td>';
+                    tableContent += '<td><a href="#" class="linkdeleteuser"><center><label class="alert label">Radera</label></center></a></td>';
                 tableContent += '</tr>'
             });
 
             $('#userList').append(tableContent);
         });
+
+        // Delete User
+        function deleteUser(event) {
+
+        }
+
     });
 </script>
 {% endblock %}

@@ -1,13 +1,17 @@
 
 {% extends 'head.html' %}
 {% block navbar %}
+<!-- Tar bort navbar för den här sidan genom att kopiera över blocket -->
 {% endblock %}
 {% block script %}
+<!-- Skriver över script blocket och lägger sedan in de igen med parent variabeln -->
     {% parent %}
+    <!-- Lägger till en extra länk i blocket -->
     <link href="../css/index.css" rel="stylesheet">
 {% endblock %}
 {% block content %}
 <form method="post" id="login">
+    <!-- row -->
     <div class="row">
         <center>
             <div class="large-6 large-centered columns end">
@@ -17,13 +21,28 @@
             </div>
         </center>
     </div>
+    <!-- row -->
     <div class="row">
         <center>
             <div class="large-6 large-centered columns end">
                 <label>Lösenord:
                     <input type="password" name="password"/>
                 </label>
-               <input class="button" type="submit" value="Log In"/>
+            </div>
+        </center>
+    </div>
+    <!-- row -->
+    <div class="row">
+        <div class="large-6 large-centered columns end">
+        <!-- Inkluderar flash.html som innehåller hur alla felmeddelande ska se ut både tex och html -->
+        {% include 'flash.html' %}
+        </div>
+    </div>
+    <!-- row -->
+    <div class="row">
+        <center>
+            <div class="large-6 large-centered columns end">
+                <input class="button" type="submit" value="Log In"/>
             </div>
         </center>
     </div>

@@ -6,6 +6,10 @@ var mongoose = require('mongoose');
  */
 var projectSchema = new mongoose.Schema({
     name: String,
+    enable: {
+        type: Boolean,
+        default: false
+    },
     private: {
         type: Boolean,
         default: false
@@ -29,7 +33,7 @@ var projectSchema = new mongoose.Schema({
 
     jobs: [{
         username: String,
-        workActivites: String,
+        workActivities: String,
         busMaterials: String,
         hours: String,
         trips: String,

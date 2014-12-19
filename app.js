@@ -118,14 +118,24 @@ app.use(function (req, res, next) {
     // Går vidare till nästa middleware
     next();
 });
-// Path till alla static filer
-app.use(express.static(path.join(__dirname, 'public'), {
-    maxAge: 31557600000
-}));
 
 // I Test miljö
 app.set('view cache', false);
 swig.setDefaults({ cache: false });
+
+// Tid i millesekunder
+var minute = 1000 * 60;   //     60000
+var hour = (minute * 60); //   3600000
+var day  = (hour * 24);   //  86400000
+var week = (day * 7);     // 604800000
+
+
+// Path till alla static filer
+/*app.use(express.static(path.join(__dirname, 'public'), {
+    maxAge: 31557600000
+}));*/
+// Gör så alla sidor har tillgång till allt i public
+app.use(express.static(__dirname + '/public', { maxAge: week }));
 
 /**
  * Main routes.
@@ -133,8 +143,8 @@ swig.setDefaults({ cache: false });
 app.get('/', userController.getLogin);
 app.post('/', userController.postLogin);
 app.get('/logout', userController.logout);
-app.get('/nyanvandare', passportConf.isAuthenticated,userController.getSignup);
-app.post('/nyanvandare', passportConf.isAuthenticated, userController.postSignup);
+app.get('/nyanvandare', userController.getSignup); // fixa sen
+app.post('/nyanvandare', userController.postSignup);
 app.post('/account/delete', passportConf.isAuthenticated, userController.postDeleteAccount);
 
 app.get('/admin', passportConf.isAuthenticated, homeController.admin);
@@ -144,19 +154,14 @@ app.get('/projekt', passportConf.isAuthenticated, homeController.projekt);
 
 app.post('/kundform', passportConf.isAuthenticated, passportConf.isAdministrator, projectController.postProject);
 app.post('/anstalld', projectController.postJob);
+app.get('/projectlist', projectController.projectList);
+app.get('/projectnames', projectController.projectNames);
+app.get('/projectuserjobs', projectController.projectUserJobs);
+
 
 app.get('/anvandare', accountController.accounts);
 app.get('/accountlist', accountController.accountlist);
-
-
-// Tid i millesekunder
-var minute = 1000 * 60;   //     60000
-var hour = (minute * 60); //   3600000
-var day  = (hour * 24);   //  86400000
-var week = (day * 7);     // 604800000
-
-// Gör så alla sidor har tillgång till allt i public
-app.use(express.static(__dirname + '/public', { maxAge: week }));
+app.delete('/accountlist/:id', passportConf.isAuthenticated, passportConf.isAdministrator, accountController.deleteUser);
 
 /**
  * 500 Error Handler.

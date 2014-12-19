@@ -25,11 +25,12 @@ exports.postProject = function (req, res, next) {
 
     if (errors) {
         req.flash('errors', errors);
-        return res.redirect('/');
+        return res.redirect('/kundform');
     }
 
     var project = new Project({
         name: req.body.name,
+        enable: false,
         private: false,
         customer: [
             {
@@ -59,17 +60,21 @@ exports.postProject = function (req, res, next) {
     });
 
     Project.findOne({
-        username: req.body.project
+        name: req.body.project
     }, function (err, existingProject) {
         if (existingProject) {
             req.flash('errors', {
-                msg: 'error byt'
+                msg: 'Ett project med de här namnet finns redan.'
             });
-            return res.redirect('/');
+            return res.redirect('/kundform');
         }
         project.save(function (err) {
             if (err) return next(err);
-            console.log('succes');
+            req.flash('succes', {
+                msg: 'Projectet skapades.'
+            });
+            console.log(req.session.flash);
+            return res.redirect('/kundform');
         });
     });
 
@@ -93,7 +98,7 @@ exports.postJob = function (req, res, next) {
 
     var job = {
         username: req.user.username,
-        workActivities: req.body.workActivites,
+        workActivities: req.body.workActivities,
         busMaterials: req.body.busMaterials,
         hours: req.body.hours,
         trips: req.body.trips,
@@ -102,7 +107,8 @@ exports.postJob = function (req, res, next) {
 
     Project.findOneAndUpdate({
         name: req.body.project
-    }, { $push: { jobs: job } } ,function(err){
+    }, { $push: { jobs: job } },
+    function(err){
         if (err) {
             return next(err);
         } else {
@@ -110,3 +116,78 @@ exports.postJob = function (req, res, next) {
         }
     });
 };
+
+ /**
+  * GET /projectlist
+  * JSON accounts api
+  */
+ exports.projectList = function (req, res) {
+     Project.findOne({
+        name: 1
+     }, { jobs: 1, _id: 0},
+    function (err, items) {
+         if (err) {
+             return (err, null);
+         }
+         res.json(items);
+     });
+ };
+
+ /**
+  * GET /projectnames
+  * JSON accounts api
+  */
+ exports.projectNames = function (req, res) {
+     Project.findOne({},
+    { name: 1, _id: 0},
+    function (err, items) {
+         if (err) {
+             return (err, null);
+         }
+         res.json(items);
+     });
+ };
+
+/**
+ *
+ */
+ exports.projectUserJobs = function (req, res) {
+     Project.aggregate([
+         // Tar bara med documents som matchar
+         {
+            $match: {
+                'jobs.username': req.query.clickedUser
+            }
+         },
+         // $project har inget och göra med att vi håller på med projects,
+         // utan den anvgör vilka fält som ska retuneras
+         {
+            $project: {
+                _id: 0,
+                name: 1,
+                jobs: 1
+            }
+         },
+         // Kolla mer på :P :P:P :P:PS:DPSD:
+         {
+            $unwind: '$jobs'
+         },
+         // Tar bara med elementen som matchar
+         {
+            $match: {
+                'jobs.username': req.query.clickedUser
+            }
+         },
+         // Sorterar alla job efter datum
+         {
+            $sort: {
+                'jobs.date': 1
+            }
+         }
+    ], function (err, items) {
+         if (err) {
+             return (err, null);
+         }
+         res.json(items);
+     });
+ };

@@ -2,58 +2,97 @@
 
 <div class="row">
     <h1><small>Rapporter</small></h1>
+<div class="row clearfix">
+    <h1 style="">
+        <small class="">Project rapporter</small>
+        <button href="#" id="rapport-project-button" class="tiny right round button dropdown" data-dropdown="dropdown-rapport-project" aria-expanded="true">
+            Välj project
+        </button>
+        <ul id="dropdown-rapport-project" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
+            <!--
+            Här kommer alla namn på projecten med hjälp av jQuery.
+            Under ser man ett exempel på hur de kan se ut i html kod.
+            <li><a href="#">Bygg på gatan</a></li>
+            -->
+        </ul>
+    </h1>
 </div>
 <div class="row">
-    <table class="responsive">
+    <table class="width-100 responsive">
         <thead>
             <tr>
-                <th width="150">Användare</th>
+                <th>Användare</th>
                 <th>Datum</th>
-                <th width="150">Projekt</th>
-                <th width="200">Arbetsmoment</th>
-                <th width="200">Material från bussen</th>
+                <th>Arbetsmoment</th>
+                <th>Material från bussen</th>
                 <th>Timmar</th>
                 <th>Resor</th>
+                <th>Aktivera / Ta bort</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="projectList">
+            <!--
+            Här kommer alla job som har gjorts på projecetet med hjälp av jQuery.
+            Under ser man ett exempel på hur de kan se ut i html kod.
             <tr>
-                <td>{{ user.username }}</td>
+                <td>admin</td>
                 <td>2014-11-23</td>
-                <td>Projekt 3</td>
                 <td>Spikade trappen</td>
                 <td>Hammare, Spik och Såg</td>
                 <td>8</td>
                 <td>1</td>
             </tr>
-            <tr>
-                <td>fredrik.bergström</td>
-                <td>2014-10-12</td>
-                <td>Projekt 3</td>
-                <td>Spikade trappen</td>
-                <td>Hammare, Spik och Såg</td>
-                <td>8</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>fredrik.bergström</td>
-                <td>2014-10-13</td>
-                <td>Projekt 3</td>
-                <td>Målade trappen</td>
-                <td>Penslar</td>
-                <td>8</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>fredrik.bergström</td>
-                <td>2014-10-14</td>
-                <td>Projekt 3</td>
-                <td>Målade trappen</td>
-                <td>Penslar</td>
-                <td>8</td>
-                <td>2</td>
-            </tr>
+            -->
         </tbody>
     </table>
 </div>
+{% endblock %} {% block jsbody %} {% parent %}
+<script>
+    $(document).ready(function () {
+        // Delete User link click
+        //$('#userList').on('click', 'td a.linkdeleteuser', deleteUser);
+
+        $.getJSON('/projectnames', function (data) {
+
+            var liElements = '';
+
+            $.each(data, function () {
+                liElements += '<li id="' + data.name + '"class="text-center dropdown-rapport-project-li" href="#">' + data.name + '</li>';
+            });
+
+            $('#dropdown-rapport-project').append(liElements);
+
+            $('.dropdown-rapport-projec§t-li').on('click', function() {
+                var projectName = this.id;
+                popTable(projectName);
+            });
+
+        });
+
+        function popTable (projectName) {
+            var tableContent = '';
+
+            $.getJSON('/projectlist', function (data) {
+                var jobs = (data.jobs);
+
+                $.each(jobs, function () {
+                    tableContent += '<tr>';
+                    tableContent += '<td class="text-center">' + this.username + '</td>';
+                    tableContent += '<td>' + this.date + '</td>';
+                    tableContent += '<td>' + this.workActivities + '</td>';
+                    tableContent += '<td>' + this.busMaterials + '</td>';
+                    tableContent += '<td>' + this.hours + '</td>';
+                    tableContent += '<td>' + this.trips + '</td>';
+                    tableContent += '<td><a href="#" class="linkdeleteuser"><center><label class="alert label">Radera</label></center></a></td>';
+                    tableContent += '</tr>'
+                });
+
+                // Tar bort alla li element i ul listan så de inte blir dubbletter
+                $('#projectList').empty();
+                // Lägger till tableContent i ul elementet
+                $('#projectList').append(tableContent);
+            });
+        }
+    });
+</script>
 {% endblock %}

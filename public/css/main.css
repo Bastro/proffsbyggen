@@ -1,0 +1,35 @@
+/* MAIN CSS */
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+@media (max-width: 640px) {
+    h1 {
+        text-align: center;
+    }
+}
+
+.width-100 {
+    width: 100%;
+}
+
+.width-95 {
+    width: 95%;
+}
+
+table tr th, table tr td {
+    padding: 0.5625rem 0.625rem;
+    font-size: 0.875rem;
+}
+
+/* Flytta till rätt plats */
+#rapport-project-button {
+    margin-top: 25px;
+    margin-right: 35px;
+    background-color: black;
+}
+
+#h1-text-rapport-project {
+    margin-top: 220px;
+}

@@ -6,10 +6,12 @@ var User = require('../models/User');
 var secrets = require('../config/secrets');
 
 /**
- * GET /login
- * Login page.
+ * GET
+ * Login sida.
  */
 exports.getLogin = function (req, res) {
+        console.log(req.session.flash);
+    // Om användaren redan är inne skickas den till olika sidor beroende på vilken typ av användare de är
     if (req.user) {
         if (req.user.type == 'admin') {
             return res.redirect('/admin');
@@ -24,14 +26,14 @@ exports.getLogin = function (req, res) {
 };
 
 /**
- * POST /login
+ * POST
  * Logga in med username och password
- * @param email
- *
+ * @param username
+ * @param password
  */
 exports.postLogin = function (req, res, next) {
-    req.assert('username', 'Username is not valid').len(3);
-    req.assert('password', 'Password cannot be blank').notEmpty();
+    req.assert('username', 'Användarnamnet är inte giltigt.').len(3);
+    req.assert('password', 'Lösenordet kan inte vara tomt.').notEmpty();
 
     var errors = req.validationErrors();
 
@@ -44,23 +46,24 @@ exports.postLogin = function (req, res, next) {
         if (err) return next(err);
         if (!user) {
             req.flash('errors', {
-                msg: info.message
+                msg: 'Användarnamnet eller lösenordet är felstavat.'
             });
             return res.redirect('/');
         }
         req.logIn(user, function (err) {
             if (err) return next(err);
-            req.flash('success', {
-                msg: 'Success! You are logged in.'
-            });
-            res.redirect(req.session.returnTo || '/');
+            if (user.type == 'admin') {
+                return res.redirect('/admin');
+            } else {
+                return res.redirect('/anstalld');
+            }
         });
     })(req, res, next);
 };
 
 /**
- *
- *
+ * GET
+ * Loggar ut användaren och skickar den till login sidan.
  */
 exports.logout = function (req, res) {
     req.logout();
@@ -68,8 +71,8 @@ exports.logout = function (req, res) {
 };
 
 /**
- *
- *
+ * GET
+ * Render signUp sidan
  */
 exports.getSignup = function (req, res) {
     //if (req.user) return res.redirect('/');
@@ -79,11 +82,14 @@ exports.getSignup = function (req, res) {
 };
 
 /**
- *
+ * POST /login
+ * Logga in med username och password
+ * @param username
+ * @param password
  */
 exports.postSignup = function (req, res, next) {
-    req.assert('username', 'Username is not valid').len(3);
-    req.assert('password', 'Password must be at least 4 characters long').len(4);
+    req.assert('username', 'Användarnamnet måste minst ha 3 tecken.').len(3);
+    req.assert('password', 'Lösenordet måste minst ha 4 tecken.').len(4);
     //req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
 
     var errors = req.validationErrors();
@@ -93,6 +99,7 @@ exports.postSignup = function (req, res, next) {
         return res.redirect('/nyanvandare');
     }
 
+    // Skapar ett user object med datan från form input i html
     var user = new User({
         username: req.body.username,
         password: req.body.password
@@ -103,15 +110,14 @@ exports.postSignup = function (req, res, next) {
     }, function (err, existingUser) {
         if (existingUser) {
             req.flash('errors', {
-                msg: 'Account with that username address already exists.'
+                msg: 'Konto med de användarnamnet finns redan.'
             });
             return res.redirect('/nyanvandare');
         }
         user.save(function (err) {
             if (err) return next(err);
-            req.logIn(user, function (err) {
-                if (err) return next(err);
-                res.redirect('/anstalld');
+            req.flash('success', {
+                msg: 'Användare skapades.'
             });
         });
     });

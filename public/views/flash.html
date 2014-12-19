@@ -1,0 +1,26 @@
+<div id="flash">
+    <!-- Error -->
+    {% if messages.errors %}
+        {% for error in messages.errors %}
+            <div data-alert class="alert-box alert radius text-center">
+                {{ error.msg }}
+                <a href="#" class="close">&times;</a>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <!-- Info -->
+    {% if messages.info %}
+        {% for info in messages.info %}
+            {{ info.msg }}
+        {% endfor %}
+    {% endif %}
+    <!-- Success -->
+    {% if messages.success %}
+        {% for success in messages.success %}
+        <div data-alert class="alert-box success radius text-center">
+            {{ success.msg }}
+            <a href="#" class="close">&times;</a>
+        </div>
+        {% endfor %}
+    {% endif %}
+</div>
