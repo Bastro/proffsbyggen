@@ -1,8 +1,7 @@
-{% extends 'head.html' %}
-{% block content %}
+{% extends 'head.html' %} {% block content %}
 <div class="row clearfix">
-    <h1 style="">
-        <small>Rapporter</small>
+    <h1 class="columns" style="">
+        <small>Användare rapporter</small>
         <button href="#" id="rapport-project-button" class="tiny right round button dropdown" data-dropdown="dropdown-rapport-project" aria-expanded="true">
             Välj Användare
         </button>
@@ -16,20 +15,21 @@
     </h1>
 </div>
 <div class="row">
-<table class="width-100 responsive">
-    <thead>
-        <tr>
-            <th>Användare</th>
-            <th>Datum</th>
-            <th>Projekt</th>
-            <th>Arbetsmoment</th>
-            <th>Material från bussen</th>
-            <th>Timmar</th>
-            <th>Resor</th>
-        </tr>
-    </thead>
-    <tbody id="rapportUser">
-        <!--
+    <div class="columns">
+        <table class="width-100 responsive">
+            <thead>
+                <tr>
+                    <th>Användare</th>
+                    <th>Datum</th>
+                    <th>Projekt</th>
+                    <th>Arbetsmoment</th>
+                    <th>Material från bussen</th>
+                    <th>Timmar</th>
+                    <th>Resor</th>
+                </tr>
+            </thead>
+            <tbody id="rapportUser">
+                <!--
         <tr>
             <td>användare</td>
             <td>2014-11-23</td>
@@ -40,8 +40,9 @@
             <td>1</td>
         </tr>
         -->
-    </tbody>
-</table>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 {% endblock %} {% block jsbody %} {% parent %}
@@ -58,26 +59,28 @@
 
             $('#dropdown-rapport-project').append(liElements);
 
-            $('.dropdown-rapport-project-li').on('click', function() {
+            $('.dropdown-rapport-project-li').on('click', function () {
                 var userName = this.id;
                 popTable(userName);
             });
 
         });
 
-        function popTable (userName) {
-            $.getJSON('/projectuserjobs', { clickedUser: userName } , function (data) {
+        function popTable(userName) {
+            $.getJSON('/projectuserjobs', {
+                clickedUser: userName
+            }, function (data) {
                 var tableContent = '';
 
                 for (var i = 0; i < data.length; i++) {
                     tableContent += '<tr>';
-                        tableContent += '<td class="text-center">' + data[i].jobs.username + '</td>';
-                        tableContent += '<td class="text-center">' + data[i].jobs.date + '</td>';
-                        tableContent += '<td class="text-center">' + data[i].name + '</td>';
-                        tableContent += '<td class="text-center">' + data[i].jobs.workActivities + '</td>';
-                        tableContent += '<td class="text-center">' + data[i].jobs.busMaterials + '</td>';
-                        tableContent += '<td class="text-center">' + data[i].jobs.hours + '</td>';
-                        tableContent += '<td class="text-center">' + data[i].jobs.trips + '</td>';
+                    tableContent += '<td class="text-center">' + data[i].jobs.username + '</td>';
+                    tableContent += '<td class="text-center">' + data[i].jobs.date + '</td>';
+                    tableContent += '<td class="text-center">' + data[i].name + '</td>';
+                    tableContent += '<td class="text-center">' + data[i].jobs.workActivities + '</td>';
+                    tableContent += '<td class="text-center">' + data[i].jobs.busMaterials + '</td>';
+                    tableContent += '<td class="text-center">' + data[i].jobs.hours + '</td>';
+                    tableContent += '<td class="text-center">' + data[i].jobs.trips + '</td>';
                     tableContent += '</tr>'
                 }
 

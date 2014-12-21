@@ -1,0 +1,42 @@
+{% extends 'head.html' %}
+{% block content %}
+<form method="POST">
+    <!-- row -->
+    <div class="row">
+        <div class="large-6 medium-6 large-centered medium-centered columns">
+            <h1><small>Byt lösenord</small></h1>
+        </div>
+    </div>
+    <!-- row -->
+    <div class="row">
+        <div class="large-6 medium-6 large-centered medium-centered columns">
+            <label>Nya lösenordet:
+                <input type="password" name="password" placeholder="" />
+            </label>
+        </div>
+    </div>
+    <!-- row -->
+    <div class="row">
+        <div class="large-6 medium-6 large-centered medium-centered columns">
+            <label>Upprepa nya lösenordet:
+                <input type="password" name="confirmPassword" placeholder="" />
+            </label>
+        </div>
+    </div>
+    <!-- row -->
+    <div class="row">
+        <div class="large-6 medium-6 large-centered medium-centered columns">
+        <!-- Inkluderar flash.html som innehåller hur alla felmeddelande ska se ut både tex och html -->
+        {% include 'flash.html' %}
+        </div>
+    </div>
+    <!-- row -->
+    <div class="row">
+        <div class="large-6 medium-6 large-centered medium-centered columns">
+            <center>
+                <input type="submit" class="button" />
+            </center>
+        </div>
+    </div>
+</form>
+{% endblock %}

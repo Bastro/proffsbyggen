@@ -82,7 +82,7 @@ exports.postProject = function (req, res, next) {
 
 exports.postJob = function (req, res, next) {
     req.assert('project', '');
-    req.assert('workActivities', '');
+    req.assert('workActivities', 'Du lär skriva vad du gjort.').len(1 );
     req.assert('busMaterials', '');
     req.assert('hours', '');
     req.assert('trips', '');
@@ -110,9 +110,16 @@ exports.postJob = function (req, res, next) {
     }, { $push: { jobs: job } },
     function(err){
         if (err) {
+            req.flash('errors', {
+                msg: 'Det blev något fel.'
+            });
             return next(err);
         } else {
-            console.log("Successfully added");
+             req.flash('succes', {
+                msg: 'Jobbet lades till.'
+            });
+            console.log(req.session.flash);
+            console.log(req.session);
         }
     });
 };
@@ -123,7 +130,7 @@ exports.postJob = function (req, res, next) {
   */
  exports.projectList = function (req, res) {
      Project.findOne({
-        name: 1
+        name: req.params.projectname
      }, { jobs: 1, _id: 0},
     function (err, items) {
          if (err) {
@@ -138,7 +145,7 @@ exports.postJob = function (req, res, next) {
   * JSON accounts api
   */
  exports.projectNames = function (req, res) {
-     Project.findOne({},
+     Project.find({},
     { name: 1, _id: 0},
     function (err, items) {
          if (err) {
@@ -185,6 +192,23 @@ exports.postJob = function (req, res, next) {
             }
          }
     ], function (err, items) {
+         if (err) {
+             return (err, null);
+         }
+         res.json(items);
+     });
+ };
+
+
+ /**
+  * GET
+  *
+  */
+ exports.projectsInfo = function (req, res) {
+     Project.find({
+
+     }, { jobs: 0, _id: 0},
+    function (err, items) {
          if (err) {
              return (err, null);
          }

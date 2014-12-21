@@ -4,46 +4,91 @@
 </div>
 <div class="row">
     <div class="columns">
-    <table class="width-100">
-        <thead>
-            <tr>
-                <th>Användarnamn</th>
-                <th>Befogenhet</th>
-                <th><center>Ta bort</center></th>
-            </tr>
-        </thead>
-        <tbody id="userList">
+        <table class="width-100">
+            <thead>
+                <tr>
+                    <th>Användarnamn</th>
+                    <th>Befogenhet</th>
+                    <th>
+                        <center>Ta bort</center>
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="userList">
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
     </div>
+</div>
+<div id="myModal" class="reveal-modal columns" data-reveal>
+    <!-- Lägg till content -->
 </div>
 {% endblock %} {% block jsbody %} {% parent %}
 <script>
     $(document).ready(function () {
 
-        // Delete User link click
-        $('#userList').on('click', 'td a.linkdeleteuser', deleteUser);
+        popTable();
 
-        $.getJSON('/accountlist', function (data) {
+        function popTable() {
+            $.getJSON('/accountlist', function (data) {
 
-            console.log(data);
+                var tableContent = '';
 
-            var tableContent = '';
-
-            $.each(data, function(){
-                tableContent += '<tr>';
+                $.each(data, function () {
+                    tableContent += '<tr>';
                     tableContent += '<td>' + this.username + '</td>';
                     tableContent += '<td>' + this.type + '</td>';
-                    tableContent += '<td><a href="#" class="linkdeleteuser"><center><label class="alert label">Radera</label></center></a></td>';
-                tableContent += '</tr>'
+                    tableContent += '<td id="hej"><a href="#" data-reveal-id="myModal"><center><label id="' + this.username + '" class="label alert deleteuser">Radera</label></a></center></td>';
+                    tableContent += '</tr>'
+                });
+
+                $('#userList').empty();
+                $('#userList').append(tableContent);
+
+                $('.deleteuser').on('click', function () {
+                    var userName = this.id;
+                    createModal(userName);
+                });
             });
+        }
 
-            $('#userList').append(tableContent);
-        });
+        function createModal(userName) {
+            var modalContent = '';
 
-        // Delete User
-        function deleteUser(event) {
+            modalContent += '<h2>Varning!</h2>'
+            modalContent += '<p class="lead">Är du säker på att du vill ta bort ' + userName + '?</p>'
+            modalContent += '<div>'
+            modalContent += '<a id="modalCancel" class="button secondary">Cancel</a>'
+            modalContent += '<a id="modalConfirm" class="button alert">Confirm</a>'
+            modalContent += '</div>'
+            modalContent += '<a class="close-reveal-modal">&#215;</a>'
+
+            $('#myModal').empty();
+            $('#myModal').append(modalContent);
+
+            $('#modalCancel').on('click', function () {
+                $('#myModal').foundation('reveal', 'close');
+            })
+
+            $('#modalConfirm').on('click', function () {
+                $('#myModal').foundation('reveal', 'close');
+                deleteUser(userName);
+            })
+        }
+
+        // Radera User
+        function deleteUser(userName) {
+            $.ajax({
+                type: 'DELETE',
+                url: '/deleteuser/' + userName
+            }).done(function (response) {
+                // Check for a successful (blank) response
+                if (response.msg === '') {} else {
+                    alert('Error: ' + response.msg);
+                }
+                // Update the table
+                popTable();
+            });
 
         }
 

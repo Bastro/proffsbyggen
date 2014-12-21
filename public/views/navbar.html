@@ -25,16 +25,39 @@
                 </li>
                 <li class="has-dropdown">
                     <a href=""><i class="fa fa-folder-open"></i>&nbsp;&nbsp;Rapporter</a>
-                        <ul class="dropdown">
-                        <li><a href="projekt">Projekt</a></li>
-                        <li><a href="admin">Användare</a></li>
-                </li></ul>
+                    <ul class="dropdown">
+                        <li>
+                            <a href="projekt">Projekt</a>
+                        </li>
+                        <li>
+                            <a href="admin">Användare</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <a href=""><i class="fa fa-info"></i>&nbsp;&nbsp;Information</a>
+                    <ul class="dropdown">
+                        <li>
+                            <a href="visaproject">&nbsp;&nbsp;Project</a>
+                        </li>
+                        <li>
+                            <a href="anvandare">&nbsp;&nbsp;Användare</a>
+                        </li>
+                    </ul>
+                </li>
+                {% endif %}
+                {% if user.type == 'user' %}
                 <li>
-                    <a href="anvandare">
-                        <i class="fa fa-users"></i>&nbsp;&nbsp;Användare
+                    <a href="anstalld">
+                        <i class="fa fa-folder-open"></i>&nbsp;&nbsp;Tidsrapportering
                     </a>
                 </li>
                 {% endif %}
+                <li>
+                    <a href="nyttlosenord">
+                        <i class="fa fa-unlock-alt"></i>&nbsp;&nbsp;Byt lösenord
+                    </a>
+                </li>
             </ul>
             <ul class="right">
                 <li class="has-form">

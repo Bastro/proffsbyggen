@@ -145,23 +145,26 @@ app.post('/', userController.postLogin);
 app.get('/logout', userController.logout);
 app.get('/nyanvandare', userController.getSignup); // fixa sen
 app.post('/nyanvandare', userController.postSignup);
-app.post('/account/delete', passportConf.isAuthenticated, userController.postDeleteAccount);
+app.delete('/deleteuser/:username', passportConf.isAuthenticated, userController.postDeleteAccount);
+app.post('/nyttlosenord', passportConf.isAuthenticated, userController.postUpdatePassword);
 
 app.get('/admin', passportConf.isAuthenticated, homeController.admin);
 app.get('/anstalld', passportConf.isAuthenticated, homeController.anstalld);
 app.get('/kundform', passportConf.isAuthenticated, passportConf.isAdministrator, homeController.kundForm); // admin funkar inte än
 app.get('/projekt', passportConf.isAuthenticated, homeController.projekt);
+app.get('/nyttlosenord', passportConf.isAuthenticated, homeController.nyttLosenord);
+app.get('/visaproject', passportConf.isAuthenticated, homeController.visaProject);
 
 app.post('/kundform', passportConf.isAuthenticated, passportConf.isAdministrator, projectController.postProject);
 app.post('/anstalld', projectController.postJob);
-app.get('/projectlist', projectController.projectList);
+app.get('/projectlist/:projectname', projectController.projectList);
 app.get('/projectnames', projectController.projectNames);
 app.get('/projectuserjobs', projectController.projectUserJobs);
+app.get('/projectsinfo', projectController.projectsInfo);
 
 
 app.get('/anvandare', accountController.accounts);
 app.get('/accountlist', accountController.accountlist);
-app.delete('/accountlist/:id', passportConf.isAuthenticated, passportConf.isAdministrator, accountController.deleteUser);
 
 /**
  * 500 Error Handler.

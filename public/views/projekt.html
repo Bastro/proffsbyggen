@@ -1,9 +1,6 @@
 {% extends 'head.html' %} {% block content %}
-
-<div class="row">
-    <h1><small>Rapporter</small></h1>
 <div class="row clearfix">
-    <h1 style="">
+    <h1 style="" class="columns">
         <small class="">Project rapporter</small>
         <button href="#" id="rapport-project-button" class="tiny right round button dropdown" data-dropdown="dropdown-rapport-project" aria-expanded="true">
             Välj project
@@ -18,6 +15,7 @@
     </h1>
 </div>
 <div class="row">
+    <div class="columns">
     <table class="width-100 responsive">
         <thead>
             <tr>
@@ -45,24 +43,22 @@
             -->
         </tbody>
     </table>
+    <div class="columns"
 </div>
 {% endblock %} {% block jsbody %} {% parent %}
 <script>
     $(document).ready(function () {
-        // Delete User link click
-        //$('#userList').on('click', 'td a.linkdeleteuser', deleteUser);
 
         $.getJSON('/projectnames', function (data) {
-
             var liElements = '';
 
-            $.each(data, function () {
-                liElements += '<li id="' + data.name + '"class="text-center dropdown-rapport-project-li" href="#">' + data.name + '</li>';
-            });
+            for (var i = 0; i < data.length; i++) {
+                liElements += '<li id="' + data[i].name + '"class="text-center dropdown-rapport-project-li" href="#">' + data[i].name + '</li>';
+            }
 
             $('#dropdown-rapport-project').append(liElements);
 
-            $('.dropdown-rapport-projec§t-li').on('click', function() {
+            $('.dropdown-rapport-project-li').on('click', function() {
                 var projectName = this.id;
                 popTable(projectName);
             });
@@ -72,7 +68,7 @@
         function popTable (projectName) {
             var tableContent = '';
 
-            $.getJSON('/projectlist', function (data) {
+            $.getJSON('/projectlist/' + projectName + '', function (data) {
                 var jobs = (data.jobs);
 
                 $.each(jobs, function () {
@@ -83,7 +79,6 @@
                     tableContent += '<td>' + this.busMaterials + '</td>';
                     tableContent += '<td>' + this.hours + '</td>';
                     tableContent += '<td>' + this.trips + '</td>';
-                    tableContent += '<td><a href="#" class="linkdeleteuser"><center><label class="alert label">Radera</label></center></a></td>';
                     tableContent += '</tr>'
                 });
 

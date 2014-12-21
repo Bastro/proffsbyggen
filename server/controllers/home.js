@@ -25,3 +25,15 @@ exports.projekt = function (req, res) {
     });
 
 };
+
+exports.nyttLosenord = function (req, res) {
+    res.render('nyttlosenord', {
+        title: 'nytt lösenord'
+    });
+};
+
+exports.visaProject = function (req, res) {
+    res.render('visaproject', {
+        title: 'nytt lösenord'
+    });
+};

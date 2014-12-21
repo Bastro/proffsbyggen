@@ -10,7 +10,7 @@ var secrets = require('../config/secrets');
  * Login sida.
  */
 exports.getLogin = function (req, res) {
-        console.log(req.session.flash);
+    console.log(req.session.flash);
     // Om användaren redan är inne skickas den till olika sidor beroende på vilken typ av användare de är
     if (req.user) {
         if (req.user.type == 'admin') {
@@ -124,16 +124,47 @@ exports.postSignup = function (req, res, next) {
 };
 
 /**
+ * POST
+ * Update current password.
+ * @param password
+ */
+exports.postUpdatePassword = function (req, res, next) {
+    req.assert('password', 'Lösenordet måste vara minst fyra tecken.').len(4);
+    req.assert('confirmPassword', 'Lösenorden matchar inte.').equals(req.body.password);
+
+    var errors = req.validationErrors();
+
+    if (errors) {
+        req.flash('errors', errors);
+        return res.redirect('/nyttlosenord');
+    }
+
+    User.findById(req.user.id, function (err, user) {
+        if (err) return next(err);
+
+        user.password = req.body.password;
+
+        user.save(function (err) {
+            if (err) return next(err);
+            req.flash('success', {
+                msg: 'Lösenordet har ändras.'
+            });
+            res.redirect('/nyttlosenord');
+        });
+    });
+};
+
+/**
  *
  */
 exports.postDeleteAccount = function (req, res, next) {
     User.remove({
-        _id: req.user.id
-    }, function (err) {
-        if (err) return next(err);
-        req.flash('info', {
-            msg: 'Kontot har blivit deletat.'
+        username: req.params.username
+    }, function (err, result) {
+        res.send((result === 1) ? {
+            msg: ''
+        } : {
+            msg: 'error: ' + err
         });
-        console.log('deleted konto');
     });
 };

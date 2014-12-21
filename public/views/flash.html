@@ -16,6 +16,7 @@
     {% endif %}
     <!-- Success -->
     {% if messages.success %}
+        {{ success.msg }}
         {% for success in messages.success %}
         <div data-alert class="alert-box success radius text-center">
             {{ success.msg }}
