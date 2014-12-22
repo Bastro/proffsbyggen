@@ -115,7 +115,7 @@
 </form>
 {% endblock %} {% block jsbody %} {% parent %}
 <script>
-    $.getJSON('/projectnames', function (data) {
+    $.getJSON('/projectnamesenable', function (data) {
         var optionElements = '';
 
         for (var i = 0; i < data.length; i++) {

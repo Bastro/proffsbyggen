@@ -1,9 +1,13 @@
 {% extends 'head.html' %} {% block content %}
+<div class="row">
+    <h1 class="columns">
+        <small class="">Användare rapporter</small>
+    </h1>
+</div>
 <div class="row clearfix">
-    <h1 class="columns" style="">
-        <small>Användare rapporter</small>
-        <button href="#" id="rapport-project-button" class="tiny right round button dropdown" data-dropdown="dropdown-rapport-project" aria-expanded="true">
-            Välj Användare
+    <div class="columns">
+        <button href="#" class="tiny round button dropdown" data-dropdown="dropdown-rapport-project" aria-expanded="true">
+            Välj project
         </button>
         <ul id="dropdown-rapport-project" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
             <!--
@@ -12,20 +16,20 @@
             <li><a href="#">Bygg på gatan</a></li>
             -->
         </ul>
-    </h1>
+        <a href="#" download="somedata.xls" class="export-excel right"><button class="tiny round button success">Excel export</button></a>
+    </div>
 </div>
 <div class="row">
     <div class="columns">
-        <table class="width-100 responsive">
+        <table id="datatable" class="width-100 responsive">
             <thead>
                 <tr>
-                    <th>Användare</th>
-                    <th>Datum</th>
-                    <th>Projekt</th>
-                    <th>Arbetsmoment</th>
-                    <th>Material från bussen</th>
-                    <th>Timmar</th>
-                    <th>Resor</th>
+                    <th class="text-center">Datum</th>
+                    <th class="text-center">Projekt</th>
+                    <th class="text-center">Arbetsmoment</th>
+                    <th class="text-center">Material från bussen</th>
+                    <th class="text-center">Timmar</th>
+                    <th class="text-center">Resor</th>
                 </tr>
             </thead>
             <tbody id="rapportUser">
@@ -54,13 +58,13 @@
             var liElements = '';
 
             for (var i = 0; i < data.length; i++) {
-                liElements += '<li id="' + data[i].username + '"class="text-center dropdown-rapport-project-li" href="#">' + data[i].username + '</li>';
+                liElements += '<li data-username="' + data[i].username + '"class="text-center dropdown-rapport-project-li" href="#">' + data[i].username + '</li>';
             }
 
             $('#dropdown-rapport-project').append(liElements);
 
             $('.dropdown-rapport-project-li').on('click', function () {
-                var userName = this.id;
+                var userName = $(this).attr('data-username');
                 popTable(userName);
             });
 
@@ -70,11 +74,11 @@
             $.getJSON('/projectuserjobs', {
                 clickedUser: userName
             }, function (data) {
+
                 var tableContent = '';
 
                 for (var i = 0; i < data.length; i++) {
                     tableContent += '<tr>';
-                    tableContent += '<td class="text-center">' + data[i].jobs.username + '</td>';
                     tableContent += '<td class="text-center">' + data[i].jobs.date + '</td>';
                     tableContent += '<td class="text-center">' + data[i].name + '</td>';
                     tableContent += '<td class="text-center">' + data[i].jobs.workActivities + '</td>';
@@ -88,6 +92,14 @@
                 $('#rapportUser').empty();
                 // Lägger till tableContent i ul elementet
                 $('#rapportUser').append(tableContent);
+
+                $('h1').empty();
+                $('h1').append('<small>Användare rapporter - ' + userName + '</small>');
+
+                $('.export-excel').on('click', function() {
+                    // function från lib
+                    ExcellentExport.excel(this, 'datatable', 'Sheet Name Here');
+                });
             });
         }
     });

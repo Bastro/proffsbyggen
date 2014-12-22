@@ -159,8 +159,11 @@ app.post('/kundform', passportConf.isAuthenticated, passportConf.isAdministrator
 app.post('/anstalld', projectController.postJob);
 app.get('/projectlist/:projectname', projectController.projectList);
 app.get('/projectnames', projectController.projectNames);
+app.get('/projectnamesenable', projectController.projectNamesEnable);
 app.get('/projectuserjobs', projectController.projectUserJobs);
 app.get('/projectsinfo', projectController.projectsInfo);
+app.delete('/deleteproject/:projectname', passportConf.isAuthenticated, projectController.postDeleteProject);
+app.post('/projectchangeenable', projectController.changeEnable);
 
 
 app.get('/anvandare', accountController.accounts);

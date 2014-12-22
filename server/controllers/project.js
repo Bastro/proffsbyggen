@@ -74,7 +74,6 @@ exports.postProject = function (req, res, next) {
                 msg: 'Projectet skapades.'
             });
             console.log(req.session.flash);
-            return res.redirect('/kundform');
         });
     });
 
@@ -155,6 +154,21 @@ exports.postJob = function (req, res, next) {
      });
  };
 
+ /**
+  * GET /projectnames
+  * JSON accounts api
+  */
+ exports.projectNamesEnable = function (req, res) {
+     Project.find({ enable: true },
+    { name: 1, _id: 0},
+    function (err, items) {
+         if (err) {
+             return (err, null);
+         }
+         res.json(items);
+     });
+ };
+
 /**
  *
  */
@@ -215,3 +229,30 @@ exports.postJob = function (req, res, next) {
          res.json(items);
      });
  };
+
+/**
+ *
+ */
+exports.postDeleteProject = function (req, res, next) {
+    Project.remove({
+        name: req.params.projectname
+    }, function (err, result) {
+        res.send((result === 1) ? {
+            msg: ''
+        } : {
+            msg: 'error: ' + err
+        });
+    });
+};
+
+/*
+ *
+ */
+exports.changeEnable = function (req, res, next) {
+    Project.findOneAndUpdate({
+        name: req.body.projectName
+    }, { $set: { enable: req.body.enable } },
+    function(err){
+        if (err) return next(err);
+    });
+};

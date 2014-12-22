@@ -1,8 +1,12 @@
 {% extends 'head.html' %} {% block content %}
-<div class="row clearfix">
-    <h1 style="" class="columns">
+<div class="row">
+    <h1 class="columns">
         <small class="">Project rapporter</small>
-        <button href="#" id="rapport-project-button" class="tiny right round button dropdown" data-dropdown="dropdown-rapport-project" aria-expanded="true">
+    </h1>
+</div>
+<div class="row clearfix">
+    <div class="columns">
+        <button href="#" class="tiny round button dropdown" data-dropdown="dropdown-rapport-project" aria-expanded="true">
             Välj project
         </button>
         <ul id="dropdown-rapport-project" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
@@ -12,24 +16,24 @@
             <li><a href="#">Bygg på gatan</a></li>
             -->
         </ul>
-    </h1>
+        <a href="#" download="somedata.xls" class="export-excel right"><button class="tiny round button success">Excel export</button></a>
+    </div>
 </div>
 <div class="row">
     <div class="columns">
-    <table class="width-100 responsive">
-        <thead>
-            <tr>
-                <th>Användare</th>
-                <th>Datum</th>
-                <th>Arbetsmoment</th>
-                <th>Material från bussen</th>
-                <th>Timmar</th>
-                <th>Resor</th>
-                <th>Aktivera / Ta bort</th>
-            </tr>
-        </thead>
-        <tbody id="projectList">
-            <!--
+        <table id="datatable" class="width-100 responsive">
+            <thead>
+                <tr>
+                    <th class="text-center">Användare</th>
+                    <th class="text-center">Datum</th>
+                    <th class="text-center">Arbetsmoment</th>
+                    <th class="text-center">Material från bussen</th>
+                    <th class="text-center">Timmar</th>
+                    <th class="text-center">Resor</th>
+                </tr>
+            </thead>
+            <tbody id="projectList">
+                <!--
             Här kommer alla job som har gjorts på projecetet med hjälp av jQuery.
             Under ser man ett exempel på hur de kan se ut i html kod.
             <tr>
@@ -41,9 +45,9 @@
                 <td>1</td>
             </tr>
             -->
-        </tbody>
-    </table>
-    <div class="columns"
+            </tbody>
+        </table>
+    </div>
 </div>
 {% endblock %} {% block jsbody %} {% parent %}
 <script>
@@ -53,19 +57,19 @@
             var liElements = '';
 
             for (var i = 0; i < data.length; i++) {
-                liElements += '<li id="' + data[i].name + '"class="text-center dropdown-rapport-project-li" href="#">' + data[i].name + '</li>';
+                liElements += '<li data-name="' + data[i].name + '" class="text-center dropdown-rapport-project-li" href="#">' + data[i].name + '</li>';
             }
 
             $('#dropdown-rapport-project').append(liElements);
 
-            $('.dropdown-rapport-project-li').on('click', function() {
-                var projectName = this.id;
+            $('.dropdown-rapport-project-li').on('click', function () {
+                var projectName = $(this).attr('data-name');
                 popTable(projectName);
             });
 
         });
 
-        function popTable (projectName) {
+        function popTable(projectName) {
             var tableContent = '';
 
             $.getJSON('/projectlist/' + projectName + '', function (data) {
@@ -74,11 +78,11 @@
                 $.each(jobs, function () {
                     tableContent += '<tr>';
                     tableContent += '<td class="text-center">' + this.username + '</td>';
-                    tableContent += '<td>' + this.date + '</td>';
-                    tableContent += '<td>' + this.workActivities + '</td>';
-                    tableContent += '<td>' + this.busMaterials + '</td>';
-                    tableContent += '<td>' + this.hours + '</td>';
-                    tableContent += '<td>' + this.trips + '</td>';
+                    tableContent += '<td class="text-center">' + this.date + '</td>';
+                    tableContent += '<td class="text-center">' + this.workActivities + '</td>';
+                    tableContent += '<td class="text-center">' + this.busMaterials + '</td>';
+                    tableContent += '<td class="text-center">' + this.hours + '</td>';
+                    tableContent += '<td class="text-center">' + this.trips + '</td>';
                     tableContent += '</tr>'
                 });
 
@@ -86,6 +90,14 @@
                 $('#projectList').empty();
                 // Lägger till tableContent i ul elementet
                 $('#projectList').append(tableContent);
+
+                $('h1').empty();
+                $('h1').append('<small class="">Project rapporter - ' + projectName + '</small>');
+
+                $('.export-excel').on('click', function() {
+                    // function från lib
+                    ExcellentExport.excel(this, 'datatable', 'Sheet Name Here');
+                });
             });
         }
     });

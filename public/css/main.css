@@ -29,20 +29,19 @@ body {
     right: 0;
 }
 
-
-/********/
-table tr th, table tr td {
-    padding: 0.5625rem 0.625rem;
-    font-size: 0.875rem;
+.orange {
+    background-color: orange;
 }
 
 /* Flytta till rätt plats */
 #rapport-project-button {
-    margin-top: 18px;
-    margin-right: 35px;
     background-color: black;
 }
 
 #h1-text-rapport-project {
     margin-top: 220px;
+}
+
+.scroll {
+    overflow: scroll;
 }

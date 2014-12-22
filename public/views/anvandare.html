@@ -4,14 +4,12 @@
 </div>
 <div class="row">
     <div class="columns">
-        <table class="width-100">
+        <table class="width-100 responsive">
             <thead>
                 <tr>
-                    <th>Användarnamn</th>
-                    <th>Befogenhet</th>
-                    <th>
-                        <center>Ta bort</center>
-                    </th>
+                    <th class="text-center">Användarnamn</th>
+                    <th class="text-center">Befogenhet</th>
+                    <th class="text-center">Ta bort</th>
                 </tr>
             </thead>
             <tbody id="userList">
@@ -36,8 +34,8 @@
 
                 $.each(data, function () {
                     tableContent += '<tr>';
-                    tableContent += '<td>' + this.username + '</td>';
-                    tableContent += '<td>' + this.type + '</td>';
+                    tableContent += '<td class="text-center">' + this.username + '</td>';
+                    tableContent += '<td class="text-center">' + this.type + '</td>';
                     tableContent += '<td id="hej"><a href="#" data-reveal-id="myModal"><center><label id="' + this.username + '" class="label alert deleteuser">Radera</label></a></center></td>';
                     tableContent += '</tr>'
                 });
