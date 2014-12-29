@@ -4,6 +4,11 @@
         <h1><small>Kund Information</small></h1>
     </div>
 </div>
+<div class="row">
+    <div class="columns">
+        {% include 'flash.html' %}
+    </div>
+</div>
 <form method="POST">
     <div class="row">
         <div class="large-6 columns">
@@ -115,7 +120,7 @@
     <div class="row">
         <div class="large-6 columns">
             <label>Mail:
-                <input type="text" placeholder="" name="email" />
+                <input type="email" placeholder="" name="email" />
             </label>
         </div>
     </div>
@@ -131,11 +136,6 @@
             <label>Lägenhets nummer:
                 <input type="text" placeholder="" name="apartmentRental" />
             </label>
-        </div>
-    </div>
-    <div class="row">
-        <div class="large-6 columns">
-            {% include 'flash.html' %}
         </div>
     </div>
     <div class="row">

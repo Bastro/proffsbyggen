@@ -1,10 +1,12 @@
-var _ = require('lodash');
-var async = require('async');
+// ta bort async och lodash från list??
 var Project = require('../models/Project');
 
+/**
+ * Kolla och fixa kommentar sen
+ */
 exports.postProject = function (req, res, next) {
-    req.assert('name', '');
-    req.assert('private', '');
+    req.assert('name', ''); // Måste ha en längd :DD
+    req.assert('private', ''); // Lägg till i project object
     req.assert('firstName1', '');
     req.assert('personalCode1', '');
     req.assert('lastName1', '');
@@ -70,10 +72,10 @@ exports.postProject = function (req, res, next) {
         }
         project.save(function (err) {
             if (err) return next(err);
-            req.flash('succes', {
+            req.flash('success', {
                 msg: 'Projectet skapades.'
             });
-            console.log(req.session.flash);
+            return res.redirect('/kundform');
         });
     });
 
@@ -92,7 +94,7 @@ exports.postJob = function (req, res, next) {
 
     if (errors) {
         req.flash('errors', errors);
-        return res.redirect('/');
+        return res.redirect('/anstalld');
     }
 
     var job = {
@@ -114,11 +116,10 @@ exports.postJob = function (req, res, next) {
             });
             return next(err);
         } else {
-             req.flash('succes', {
+             req.flash('success', {
                 msg: 'Jobbet lades till.'
             });
-            console.log(req.session.flash);
-            console.log(req.session);
+            return res.redirect('/anstalld');
         }
     });
 };

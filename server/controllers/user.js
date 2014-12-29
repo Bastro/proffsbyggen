@@ -1,5 +1,3 @@
-var _ = require('lodash');
-var async = require('async');
 var crypto = require('crypto');
 var passport = require('passport');
 var User = require('../models/User');
@@ -119,6 +117,7 @@ exports.postSignup = function (req, res, next) {
             req.flash('success', {
                 msg: 'Användare skapades.'
             });
+            return res.redirect('/nyanvandare');
         });
     });
 };
