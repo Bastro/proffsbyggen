@@ -1,9 +1,11 @@
 {% extends 'head.html' %} {% block content %}
+<!-- row -->
 <div class="row">
     <h1 class="columns">
         <small>Användare rapporter</small>
     </h1>
 </div>
+<!-- row -->
 <div class="row clearfix">
     <div class="columns">
         <button href="#" class="tiny round button dropdown" data-dropdown="dropdown-rapport-project" aria-expanded="true">
@@ -19,6 +21,7 @@
         <a href="#" download="somedata.xls" class="export-excel right"><button class="tiny round button success">Excel export</button></a>
     </div>
 </div>
+<!-- row -->
 <div class="row">
     <div class="columns">
         <table id="datatable" class="width-100 responsive">
@@ -33,7 +36,7 @@
                 </tr>
             </thead>
             <tbody id="rapportUser">
-                <!--
+        <!-- Exempel på hur det ser ut i html
         <tr>
             <td>användare</td>
             <td>2014-11-23</td>

@@ -1,3 +1,4 @@
 {
+  // Alla bower install hamnar i public/lib
   "directory" : "public/lib"
 }

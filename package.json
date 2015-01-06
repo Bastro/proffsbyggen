@@ -1,4 +1,5 @@
 {
+  // npm install för att få alla dependencies installerade
   "name": "proffsbyggen",
   "version": "1.0.0",
   "main": "app.js",

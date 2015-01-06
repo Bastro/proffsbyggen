@@ -52,7 +52,8 @@ var passportConf = require('./server/config/passport');
 var app = express();
 
 /*
- *
+ * Används för att visa tid i html/view
+ * locals är globala variabler i http/view
  */
 app.locals.moment = require('moment');
 

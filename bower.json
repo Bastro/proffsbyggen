@@ -1,4 +1,5 @@
 {
+  // bower install för att installera alla dependencies
   "name": "proffsbyggen",
   "dependencies": {
     "foundation": "zurb/bower-foundation#~5.4.7",
