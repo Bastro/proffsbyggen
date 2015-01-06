@@ -25,7 +25,7 @@ var passport = require('passport');                     // http://passportjs.org
 var expressValidator = require('express-validator');    // https://github.com/ctavan/express-validator // kolla
 var swig = require('swig');                             // http://paularmstrong.github.io/swig/
 var config = require('./server/config/config');
-var helmet = require('helmet');
+//var helmet = require('helmet');
 
 
 /**
@@ -103,13 +103,13 @@ app.use(session({
 }));
 
 // Security Settings
-app.disable('x-powered-by');          // Don't advertise our server type
+//app.disable('x-powered-by');          // Don't advertise our server type
 //app.use(csrf());                      // Prevent Cross-Site Request Forgery
-app.use(helmet.crossdomain());        // Serve crossdomain.xml policy
+/*app.use(helmet.crossdomain());        // Serve crossdomain.xml policy
 app.use(helmet.ienoopen());           // X-Download-Options for IE8+
 app.use(helmet.nosniff());            // Sets X-Content-Type-Options to nosniff
 app.use(helmet.xssFilter());          // sets the X-XSS-Protection header
-app.use(helmet.frameguard('deny'));   // Prevent iframe clickjacking
+app.use(helmet.frameguard('deny'));   // Prevent iframe clickjacking*/
 
 
 // Content Security Policy:
