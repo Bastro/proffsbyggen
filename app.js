@@ -219,6 +219,7 @@ app.get('/logout', userController.logout);
 app.get('/anstalld', passportConf.isAuthenticated, homeController.anstalld);
 app.get('/nyttlosenord', passportConf.isAuthenticated, homeController.nyttLosenord);
 app.get('/projectnamesenable', passportConf.isAuthenticated, projectController.projectNamesEnable);
+app.post('/anstalld', passportConf.isAuthenticated, projectController.postJob);
 
 // Tillgänglig admin
 app.get('/nyanvandare', passportConf.isAdministrator, passportConf.isAuthenticated, userController.getSignup);
@@ -232,7 +233,6 @@ app.get('/projekt', passportConf.isAdministrator, passportConf.isAuthenticated, 
 app.get('/visaproject', passportConf.isAdministrator, passportConf.isAuthenticated, homeController.visaProject);
 
 app.post('/kundform', passportConf.isAdministrator, passportConf.isAuthenticated, passportConf.isAdministrator, projectController.postProject);
-app.post('/anstalld', passportConf.isAdministrator, passportConf.isAuthenticated, projectController.postJob);
 app.get('/projectlist/:projectname', passportConf.isAdministrator, passportConf.isAuthenticated, projectController.projectList);
 app.get('/projectnames', passportConf.isAdministrator, passportConf.isAuthenticated, projectController.projectNames);
 app.get('/projectnamesenable', passportConf.isAdministrator, passportConf.isAuthenticated, projectController.projectNamesEnable);
