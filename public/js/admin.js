@@ -7,7 +7,7 @@ $(document).ready(function () {
 
         // Skapar li element för alla konton.
         for (var i = 0; i < data.length; i++) {
-            liElements += '<li data-username="' + data[i].username + '"class="text-center dropdown-rapport-project-li" href="#">' + data[i].username + '</li>';
+            liElements += '<li data-username="' + data[i].username + '" class="text-center dropdown-rapport-project-li" href="#">' + data[i].username + '</li>';
         }
 
         // Lägger till liElements i dom/html

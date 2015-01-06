@@ -4,7 +4,6 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "htmllint": "htmllint public/views/**.html"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
@@ -25,8 +24,5 @@
     "passport": "^0.2.1",
     "passport-local": "^1.0.0",
     "swig": "^1.4.2"
-  },
-  "devDependencies": {
-    "htmllint": "^0.2.2"
   }
 }

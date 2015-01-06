@@ -34,7 +34,6 @@ var config = require('./server/config/config');
 var homeController = require('./server/controllers/home');
 var userController = require('./server/controllers/user');
 var projectController = require('./server/controllers/project');
-var accountController = require('./server/controllers/account');
 
 /**
  * Konfiguration filer
@@ -241,8 +240,8 @@ app.get('/projectsinfo', passportConf.isAdministrator, passportConf.isAuthentica
 app.delete('/deleteproject/:projectname', passportConf.isAdministrator, passportConf.isAuthenticated, projectController.postDeleteProject);
 app.post('/projectchangeenable', passportConf.isAdministrator, passportConf.isAuthenticated, projectController.changeEnable);
 
-app.get('/anvandare', passportConf.isAdministrator, passportConf.isAuthenticated, accountController.accounts);
-app.get('/accountlist', passportConf.isAdministrator, passportConf.isAuthenticated, accountController.accountlist);
+app.get('/anvandare', passportConf.isAdministrator, passportConf.isAuthenticated, userController.accounts);
+app.get('/accountlist', passportConf.isAdministrator, passportConf.isAuthenticated, userController.accountlist);
 
 /**
  * 500 Error Handler.

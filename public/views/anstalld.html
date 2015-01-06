@@ -105,27 +105,6 @@
 <!-- Fixa lokala scripts -->
 <script src="../lib/foundation-datepicker/js/foundation-datepicker.js"></script>
 <link rel="stylesheet" href="../lib/foundation-datepicker/stylesheets/foundation-datepicker.css" />
-<script>
-    $(function () {
-        $('#dp3').fdatepicker({
-            language: "sv",
-            todayHighlight: true
-        });
-    });
-</script>
-<script>
-    $.getJSON('/projectnamesenable', function (data) {
-        var optionElements = '';
-
-        for (var i = 0; i < data.length; i++) {
-            optionElements += '<option value="' + data[i].name + '">' + data[i].name + '</option>';
-        }
-
-        // Tar bort alla li element i ul listan så de inte blir dubbletter
-        $('#projectListEnable').empty();
-        // Lägger till tableContent i ul elementet
-        $('#projectListEnable').append(optionElements);
-    });
-</script>
+<script src="../js/anstalld.js"></script>
 {% endblock %}
 

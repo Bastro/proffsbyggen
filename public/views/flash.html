@@ -1,3 +1,6 @@
+<!--
+Meddelanden för att ge feedbaka till användare efter den har ändrat något i databasen
+-->
 <div id="flash">
     <!-- Error -->
     {% if messages.errors %}
@@ -11,8 +14,11 @@
     <!-- Info -->
     {% if messages.info %}
         {% for info in messages.info %}
+        <div data-alert class="alert-box info radius text-center">
             {{ info.msg }}
+            <a href="#" class="close">&times;</a>
         {% endfor %}
+        </div>
     {% endif %}
     <!-- Success -->
     {% if messages.success %}

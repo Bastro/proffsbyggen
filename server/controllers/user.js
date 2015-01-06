@@ -167,3 +167,36 @@ exports.postDeleteAccount = function (req, res, next) {
         });
     });
 };
+
+/**
+ * GET anvandare
+ * Render användare sidan
+ */
+exports.accounts = function (req, res) {
+    res.render('anvandare', {
+        title: 'använder'
+    });
+};
+
+/**
+ * GET accountlist
+ * Alla users i JSON object
+ */
+exports.accountlist = function (req, res) {
+    User.find({}, function (err, items) {
+        if (err) {
+            return (err, null);
+        }
+        res.json(items);
+    });
+};
+
+  /**
+   * DEL accountlist/:id
+   * Tar bort användare med hjälp av id
+   */
+exports.deleteUser = function (req, res) {
+    User.remove({
+        _id: req.params.id
+    });
+};
