@@ -218,6 +218,7 @@ app.get('/logout', userController.logout);
 // Tillgänglig för inloggade
 app.get('/anstalld', passportConf.isAuthenticated, homeController.anstalld);
 app.get('/nyttlosenord', passportConf.isAuthenticated, homeController.nyttLosenord);
+app.get('/projectnamesenable', passportConf.isAuthenticated, projectController.projectNamesEnable);
 
 // Tillgänglig admin
 app.get('/nyanvandare', passportConf.isAdministrator, passportConf.isAuthenticated, userController.getSignup);

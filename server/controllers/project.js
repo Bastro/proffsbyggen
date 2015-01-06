@@ -1,27 +1,29 @@
-// ta bort async och lodash från list??
 var Project = require('../models/Project');
 
 /**
- * Kolla och fixa kommentar sen
+ * Post projektet.
+ * Validerar de inputs som känns nödvängiga.
+ * Lägger sen till allt input till ett object somm skickas till databasen om de inte redan finns ett
  */
 exports.postProject = function (req, res, next) {
-    req.assert('name', ''); // Måste ha en längd :DD
-    req.assert('private', ''); // Lägg till i project object
-    req.assert('firstName1', '');
-    req.assert('personalCode1', '');
-    req.assert('lastName1', '');
-    req.assert('firstName2', '');
-    req.assert('personalCode2', '');
-    req.assert('lastName2', '');
-    req.assert('adress', '');
-    req.assert('zipCode', '');
-    req.assert('city', '');
-    req.assert('phoneNumber', '');
-    req.assert('cadastral', '');
-    req.assert('rotdeduction', '');
-    req.assert('organizationNumber', '');
-    req.assert('apartmentRental', '');
-    req.assert('email', '');
+    // Validerar input och skickar felmeddelande
+    req.assert('name', 'Projektet måste ha ett namn.').len(1);
+    //req.assert('private', ''); // Lägg till i project object
+    //req.assert('firstName1', '');
+    //req.assert('personalCode1', '');
+    //req.assert('lastName1', '');
+    //req.assert('firstName2', '');
+    //req.assert('personalCode2', '');
+    //req.assert('lastName2', '');
+    //req.assert('adress', '');
+    //req.assert('zipCode', '');
+    //req.assert('city', '');
+    //req.assert('phoneNumber', '');
+    //req.assert('cadastral', '');
+    //req.assert('rotdeduction', '');
+    //req.assert('organizationNumber', '');
+    //req.assert('apartmentRental', '');
+    //req.assert('email', '');
 
     var errors = req.validationErrors();
 
@@ -83,7 +85,7 @@ exports.postProject = function (req, res, next) {
 
 exports.postJob = function (req, res, next) {
     req.assert('project', '');
-    req.assert('workActivities', 'Du lär skriva vad du gjort.').len(1 );
+    req.assert('workActivities', 'Du lär skriva vad du gjort.').len(1);
     req.assert('busMaterials', '');
     req.assert('hours', '');
     req.assert('trips', '');
