@@ -57,7 +57,7 @@ exports.isAdministrator = function (req, res, next) {
     if (req.isAuthenticated()) {
         if (req.user.type !== 'admin') {
             req.flash('error', {
-                msg: 'You must be an Administrator reach that page.'
+                msg: 'Du måste vara admin för att komma åt den här sidan.'
             });
             return res.redirect('/anstalld');
         } else {
@@ -65,7 +65,7 @@ exports.isAdministrator = function (req, res, next) {
         }
     } else {
         req.flash('error', {
-            msg: 'You must be logged in to reach that page.'
+            msg: 'Du måste vara inloggad för att komma åt den här sidan.'
         });
         res.redirect('/');
     }

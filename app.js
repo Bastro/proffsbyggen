@@ -25,6 +25,7 @@ var passport = require('passport');                     // http://passportjs.org
 var expressValidator = require('express-validator');    // https://github.com/ctavan/express-validator // kolla
 var swig = require('swig');                             // http://paularmstrong.github.io/swig/
 var config = require('./server/config/config');
+var helmet = require('helmet');
 
 
 /**
@@ -100,6 +101,74 @@ app.use(session({
         auto_reconnect: true
     })
 }));
+
+// Security Settings
+app.disable('x-powered-by');          // Don't advertise our server type
+//app.use(csrf());                      // Prevent Cross-Site Request Forgery
+app.use(helmet.crossdomain());        // Serve crossdomain.xml policy
+app.use(helmet.ienoopen());           // X-Download-Options for IE8+
+app.use(helmet.nosniff());            // Sets X-Content-Type-Options to nosniff
+app.use(helmet.xssFilter());          // sets the X-XSS-Protection header
+app.use(helmet.frameguard('deny'));   // Prevent iframe clickjacking
+
+
+// Content Security Policy:
+//   http://content-security-policy.com/
+//   http://www.html5rocks.com/en/tutorials/security/content-security-policy/
+//   http://www.html5rocks.com/en/tutorials/security/sandboxed-iframes/
+//
+//   NOTE: TURN THIS OFF DURING DEVELOPMENT
+//   IT'S JUST PAINFUL OTHERWISE! OR DON'T
+//   EVEN USE IT AT ALL - I JUST WANTED TO
+//   LEARN HOW IT WORKS. :)
+/*
+app.use(helmet.contentSecurityPolicy({
+  defaultSrc: [
+    "'self'"
+  ],
+  scriptSrc: [
+    "'self'",
+    "'unsafe-eval'",
+    "'unsafe-inline'",
+    'http://foundation-datepicker.peterbeno.com'
+  ],
+  styleSrc: [
+    "'self'",
+    "'unsafe-inline'",
+    'http://foundation-datepicker.peterbeno.com'
+  ],
+  fontSrc: [
+    "'self'",
+    'http://fonts.googleapis.com',
+    'https://fonts.googleapis.com'
+  ],
+  imgSrc: [
+    "'self'"
+  ],
+  mediaSrc: [
+    "'self'"
+  ],
+  connectSrc: [ // limit the origins (via XHR, WebSockets, and EventSource)
+    "'self'",
+    'ws://localhost:3000',
+    'ws://188.166.59.59:3000/',
+    'wss://188.166.59.59:3000/'
+  ],
+  objectSrc: [  // allows control over Flash and other plugins
+    "'none'"
+  ],
+  frameSrc: [   // origins that can be embedded as frames
+
+  ],
+  sandbox: [
+    'allow-same-origin',
+    'allow-forms',
+    'allow-scripts'
+  ],
+  reportOnly: false,     // set to true if you *only* want to report errors
+  setAllHeaders: false   // set to true if you want to set all headers
+}));*/
+
 // Använder modulen Passport.js för att sköta logins
 app.use(passport.initialize());
 app.use(passport.session());
@@ -138,36 +207,40 @@ var week = (day * 7);     // 604800000
 app.use(express.static(__dirname + '/public', { maxAge: week }));
 
 /**
- * Main routes.
+ * Routes.
  */
+// Tillgänglig för alla
 app.get('/', userController.getLogin);
 app.post('/', userController.postLogin);
 app.get('/logout', userController.logout);
-app.get('/nyanvandare', userController.getSignup); // fixa sen
-app.post('/nyanvandare', userController.postSignup);
-app.delete('/deleteuser/:username', passportConf.isAuthenticated, userController.postDeleteAccount);
-app.post('/nyttlosenord', passportConf.isAuthenticated, userController.postUpdatePassword);
 
-app.get('/admin', passportConf.isAuthenticated, homeController.admin);
+// Tillgänglig för inloggade
 app.get('/anstalld', passportConf.isAuthenticated, homeController.anstalld);
-app.get('/kundform', passportConf.isAuthenticated, passportConf.isAdministrator, homeController.kundForm); // admin funkar inte än
-app.get('/projekt', passportConf.isAuthenticated, homeController.projekt);
 app.get('/nyttlosenord', passportConf.isAuthenticated, homeController.nyttLosenord);
-app.get('/visaproject', passportConf.isAuthenticated, homeController.visaProject);
 
-app.post('/kundform', passportConf.isAuthenticated, passportConf.isAdministrator, projectController.postProject);
-app.post('/anstalld', projectController.postJob);
-app.get('/projectlist/:projectname', projectController.projectList);
-app.get('/projectnames', projectController.projectNames);
-app.get('/projectnamesenable', projectController.projectNamesEnable);
-app.get('/projectuserjobs', projectController.projectUserJobs);
-app.get('/projectsinfo', projectController.projectsInfo);
-app.delete('/deleteproject/:projectname', passportConf.isAuthenticated, projectController.postDeleteProject);
-app.post('/projectchangeenable', projectController.changeEnable);
+// Tillgänglig admin
+app.get('/nyanvandare', passportConf.isAdministrator, passportConf.isAuthenticated, userController.getSignup);
+app.post('/nyanvandare', passportConf.isAdministrator, passportConf.isAuthenticated, userController.postSignup);
+app.delete('/deleteuser/:username', passportConf.isAdministrator, passportConf.isAuthenticated, userController.postDeleteAccount);
+app.post('/nyttlosenord', passportConf.isAdministrator, passportConf.isAuthenticated, userController.postUpdatePassword);
 
+app.get('/admin', passportConf.isAdministrator, passportConf.isAuthenticated, homeController.admin);
+app.get('/kundform', passportConf.isAdministrator, passportConf.isAuthenticated, passportConf.isAdministrator, homeController.kundForm);
+app.get('/projekt', passportConf.isAdministrator, passportConf.isAuthenticated, homeController.projekt);
+app.get('/visaproject', passportConf.isAdministrator, passportConf.isAuthenticated, homeController.visaProject);
 
-app.get('/anvandare', accountController.accounts);
-app.get('/accountlist', accountController.accountlist);
+app.post('/kundform', passportConf.isAdministrator, passportConf.isAuthenticated, passportConf.isAdministrator, projectController.postProject);
+app.post('/anstalld', passportConf.isAdministrator, passportConf.isAuthenticated, projectController.postJob);
+app.get('/projectlist/:projectname', passportConf.isAdministrator, passportConf.isAuthenticated, projectController.projectList);
+app.get('/projectnames', passportConf.isAdministrator, passportConf.isAuthenticated, projectController.projectNames);
+app.get('/projectnamesenable', passportConf.isAdministrator, passportConf.isAuthenticated, projectController.projectNamesEnable);
+app.get('/projectuserjobs', passportConf.isAdministrator, passportConf.isAuthenticated, projectController.projectUserJobs);
+app.get('/projectsinfo', passportConf.isAdministrator, passportConf.isAuthenticated, projectController.projectsInfo);
+app.delete('/deleteproject/:projectname', passportConf.isAdministrator, passportConf.isAuthenticated, projectController.postDeleteProject);
+app.post('/projectchangeenable', passportConf.isAdministrator, passportConf.isAuthenticated, projectController.changeEnable);
+
+app.get('/anvandare', passportConf.isAdministrator, passportConf.isAuthenticated, accountController.accounts);
+app.get('/accountlist', passportConf.isAdministrator, passportConf.isAuthenticated, accountController.accountlist);
 
 /**
  * 500 Error Handler.

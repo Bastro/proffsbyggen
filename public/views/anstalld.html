@@ -1,15 +1,4 @@
-{% extends 'head.html' %} {% block jsbody %} {% parent %}
-<script src="http://foundation-datepicker.peterbeno.com/js/foundation-datepicker.js"></script>
-<link rel="stylesheet" href="http://foundation-datepicker.peterbeno.com/stylesheets/foundation-datepicker.css">
-<script>
-    $(function () {
-        $('#dp3').fdatepicker({
-            language: "sv",
-            todayHighlight: true
-        });
-    });
-</script>
-{% endblock %} {% block content %}
+{% extends 'head.html' %} {% block content %}
 <!-- row -->
 <div class="row">
     <div class="columns">
@@ -21,7 +10,7 @@
     <div class="row">
         <div class="large-6 medium-6 columns">
             <label>Välj project:
-                <select id="projectListEnable"name="project">
+                <select id="projectListEnable" name="project">
                     <!--
                         Exempel på hur htmlen kommer se ut
                         <option value="Project 1">Project 1</option>
@@ -92,8 +81,7 @@
     <!-- Kolla mer på!!!!!! -->
     <div class="row date" id="dp3" data-date="{{ moment(Date.now()).format('YYYY/MM/DD') }}" data-date-format="yyyy-mm-dd">
         <div class="large-2 medium-4 small-6 columns" style="padding-right:0">
-            <input type="text" value="{{ moment(Date.now()).format('YYYY-MM-DD') }}" name="date">
-        </div>
+            <input type="text" value="{{ moment(Date.now()).format('YYYY-MM-DD') }}" name="date"></div>
         <!-- styleing i html :P:P -->
         <div class="large-1 medium-2 small-6 columns end" style="padding-left:0">
             <span class="prefix"><i class="fa fa-calendar"></i></span>
@@ -114,6 +102,17 @@
     </div>
 </form>
 {% endblock %} {% block jsbody %} {% parent %}
+<!-- Fixa lokala scripts -->
+<script src="http://foundation-datepicker.peterbeno.com/js/foundation-datepicker.js"></script>
+<link rel="stylesheet" href="http://foundation-datepicker.peterbeno.com/stylesheets/foundation-datepicker.css">
+<script>
+    $(function () {
+        $('#dp3').fdatepicker({
+            language: "sv",
+            todayHighlight: true
+        });
+    });
+</script>
 <script>
     $.getJSON('/projectnamesenable', function (data) {
         var optionElements = '';
