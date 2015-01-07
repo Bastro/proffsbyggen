@@ -40,49 +40,51 @@ Technology
 
 Project Structure
 -----------------
-|.bowerrc
-|.gitignore
-|.travis.yml
-|app.js
-|bower.js
-|package.json
-|public
-|    css
-|        index.css
-|        main.css
-|        responsiv-tables.css
-|    js
-|        admin.js
-|        anstalld.js
-|        anvandare.js
-|        jquery-1.11.1.min.js
-|        projekt.js
-|        responsive-tables.js
-|        visaproject.js
-|    views
-|        admin.html
-|        anstalld.html
-|        anvandare.html
-|        flash.html
-|        head.html
-|        index.html
-|        kundform.html
-|        navbar.html
-|        nyanvandare.html
-|        nyttlosenord.html
-|        projekt.html
-|        robots.txt
-|        visaproject.html
-|README.md
-|server
-|    config
-|        config.js
-|        passport.js
-|        secrets.js
-|    controllers
-|        home.js
-|        project.js
-|        user.js
-|    models
-|        Project.js
-|        User.js
+```bash
+.bowerrc
+.gitignore
+.travis.yml
+app.js
+bower.js
+package.json
+public
+    css
+        index.css
+        main.css
+        responsiv-tables.css
+    js
+        admin.js
+        anstalld.js
+        anvandare.js
+        jquery-1.11.1.min.js
+        projekt.js
+        responsive-tables.js
+        visaproject.js
+    views
+        admin.html
+        anstalld.html
+        anvandare.html
+        flash.html
+        head.html
+        index.html
+        kundform.html
+        navbar.html
+        nyanvandare.html
+        nyttlosenord.html
+        projekt.html
+        robots.txt
+        visaproject.html
+README.md
+server
+    config
+        config.js
+        passport.js
+        secrets.js
+    controllers
+        home.js
+        project.js
+        user.js
+    models
+        Project.js
+        User.js
+```        
