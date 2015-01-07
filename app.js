@@ -240,7 +240,7 @@ app.get('/projectsinfo', passportConf.isAdministrator, passportConf.isAuthentica
 app.delete('/deleteproject/:projectname', passportConf.isAdministrator, passportConf.isAuthenticated, projectController.postDeleteProject);
 app.post('/projectchangeenable', passportConf.isAdministrator, passportConf.isAuthenticated, projectController.changeEnable);
 
-app.get('/anvandare', passportConf.isAdministrator, passportConf.isAuthenticated, userController.accounts);
+app.get('/anvandare', passportConf.isAdministrator, passportConf.isAuthenticated, homeController.accounts);
 app.get('/accountlist', passportConf.isAdministrator, passportConf.isAuthenticated, userController.accountlist);
 
 /**

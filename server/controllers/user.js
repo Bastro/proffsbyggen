@@ -4,11 +4,9 @@ var User = require('../models/User');
 var secrets = require('../config/secrets');
 
 /**
- * GET
  * Login sida.
  */
 exports.getLogin = function (req, res) {
-    console.log(req.session.flash);
     // Om användaren redan är inne skickas den till olika sidor beroende på vilken typ av användare de är
     if (req.user) {
         if (req.user.type == 'admin') {
@@ -24,7 +22,6 @@ exports.getLogin = function (req, res) {
 };
 
 /**
- * POST
  * Logga in med username och password
  * @param username
  * @param password
@@ -60,7 +57,6 @@ exports.postLogin = function (req, res, next) {
 };
 
 /**
- * GET
  * Loggar ut användaren och skickar den till login sidan.
  */
 exports.logout = function (req, res) {
@@ -69,18 +65,15 @@ exports.logout = function (req, res) {
 };
 
 /**
- * GET
  * Render signUp sidan
  */
 exports.getSignup = function (req, res) {
-    //if (req.user) return res.redirect('/');
     res.render('nyanvandare', {
         title: 'Skapa ny användare'
     });
 };
 
 /**
- * POST /login
  * Logga in med username och password
  * @param username
  * @param password
@@ -123,8 +116,7 @@ exports.postSignup = function (req, res, next) {
 };
 
 /**
- * POST
- * Update current password.
+ * Uppdaterar nuvarande lösenordet
  * @param password
  */
 exports.postUpdatePassword = function (req, res, next) {
@@ -154,7 +146,8 @@ exports.postUpdatePassword = function (req, res, next) {
 };
 
 /**
- *
+ * Tar bort användaren
+ * @param username
  */
 exports.postDeleteAccount = function (req, res, next) {
     User.remove({
@@ -169,18 +162,7 @@ exports.postDeleteAccount = function (req, res, next) {
 };
 
 /**
- * GET anvandare
- * Render användare sidan
- */
-exports.accounts = function (req, res) {
-    res.render('anvandare', {
-        title: 'använder'
-    });
-};
-
-/**
- * GET accountlist
- * Alla users i JSON object
+ * Retunerar alla användare
  */
 exports.accountlist = function (req, res) {
     User.find({}, function (err, items) {
@@ -191,10 +173,10 @@ exports.accountlist = function (req, res) {
     });
 };
 
-  /**
-   * DEL accountlist/:id
-   * Tar bort användare med hjälp av id
-   */
+/**
+ * Tar bort användaren
+ * @param id
+ */
 exports.deleteUser = function (req, res) {
     User.remove({
         _id: req.params.id

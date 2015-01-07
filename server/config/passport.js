@@ -1,13 +1,14 @@
-var _ = require('lodash');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var User = require('../models/User');
 var secrets = require('./secrets');
 
+// Session skapas
 passport.serializeUser(function (user, done) {
     done(null, user.id);
 });
 
+// Session tas bort
 passport.deserializeUser(function (id, done) {
     User.findById(id, function (err, user) {
         done(err, user);
@@ -25,14 +26,14 @@ passport.use(new LocalStrategy({
         username: username
     }, function (err, user) {
         if (!user) return done(null, false, {
-            message: 'Username ' + username + ' not found'
+            message: 'Användare ' + username + ' finns inte.'
         });
         user.comparePassword(password, function (err, isMatch) {
             if (isMatch) {
                 return done(null, user);
             } else {
                 return done(null, false, {
-                    message: 'Invalid email or password.'
+                    message: 'Fel email eller lösenord.'
                 });
             }
         });
@@ -50,7 +51,7 @@ exports.isAuthenticated = function (req, res, next) {
 
 /**
  * Admin middleware.
- * Kan kolla om användare är admin eller inte
+ * Används till sidor som bara admin ska komma åt
  */
 exports.isAdministrator = function (req, res, next) {
     // Kollar så användaren är inloggade först

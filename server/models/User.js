@@ -48,7 +48,6 @@ userSchema.pre('save', function (next) {
 /**
  * Method om man ska jämföra lösenord
  * med hjälp av bcrypt
- * **** Vet ej om den ska vara kvar ******
  */
 userSchema.methods.comparePassword = function (candidatePassword, cb) {
     bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {

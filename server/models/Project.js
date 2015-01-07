@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 /**
  * Project Schema
- *
+ * Hur projectet kommer att sparas i databasen
  */
 var projectSchema = new mongoose.Schema({
     name: {
@@ -25,13 +25,13 @@ var projectSchema = new mongoose.Schema({
     }],
     adress: {
         adress: String,
-        zipCode: Number,
+        zipCode: String,
         city: String,
         phoneNumber: String,
         cadastral: String, // Fastighetsbeteckning
         rotdeduction: String,
         organizationNumber: String,
-        apartmentRental: Number // Lägenhetsnummer
+        apartmentRental: String // Lägenhetsnummer
     },
 
     jobs: [{

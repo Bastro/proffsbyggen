@@ -1,0 +1,4 @@
+# www.robotstxt.org/
+# Sidan ska inte listas på google etc
+User-agent: *
+Disallow: /

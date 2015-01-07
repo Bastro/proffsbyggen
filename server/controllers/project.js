@@ -3,12 +3,29 @@ var Project = require('../models/Project');
 /**
  * Post projektet.
  * Validerar de inputs som känns nödvängiga.
- * Lägger sen till allt input till ett object somm skickas till databasen om de inte redan finns ett
+ * Lägger sen till allt input till ett object somm skickas till databasen om de inte redan finns ett.
+ * @param name
+ * @param private
+ * @param firstName1
+ * @param personalCode1
+ * @param lastName1
+ * @param firstName2
+ * @param personalCode2
+ * @param lastName2
+ * @param adress
+ * @param zipCode
+ * @param city
+ * @param phoneNumber
+ * @param cadastral
+ * @param rotdeduction
+ * @param organizationNumber
+ * @param apartmentRental
+ * @param email
  */
 exports.postProject = function (req, res, next) {
-    // Validerar input och skickar felmeddelande
+    // Validerar input och skickar felmeddelande.
     req.assert('name', 'Projektet måste ha ett namn.').len(1);
-    //req.assert('private', ''); // Lägg till i project object
+    //req.assert('private', ''); // !!!!!!Lägg till i project object
     //req.assert('firstName1', '');
     //req.assert('personalCode1', '');
     //req.assert('lastName1', '');
@@ -83,8 +100,17 @@ exports.postProject = function (req, res, next) {
 
 };
 
+/**
+ * Anställd postar ett jobb som kommer att sparas i ett project.
+ * @param project
+ * @param workActivities
+ * @param busMaterials
+ * @param hours
+ * @param trips
+ * @param date
+ */
 exports.postJob = function (req, res, next) {
-    req.assert('project', '');
+    req.assert('project', '').len(1);
     req.assert('workActivities', 'Du lär skriva vad du gjort.').len(1);
     req.assert('busMaterials', '');
     req.assert('hours', '');
@@ -108,6 +134,7 @@ exports.postJob = function (req, res, next) {
         date: req.body.date
     };
 
+    // Letar efter projektet om det finns och isåfall lägger till nya jobbet.
     Project.findOneAndUpdate({
         name: req.body.project
     }, { $push: { jobs: job } },
@@ -127,8 +154,8 @@ exports.postJob = function (req, res, next) {
 };
 
  /**
-  * GET /projectlist
-  * JSON accounts api
+  * Retunerar JSON object med alla jobbs från ett projekt.
+  * @param projectname
   */
  exports.projectList = function (req, res) {
      Project.findOne({
@@ -143,8 +170,7 @@ exports.postJob = function (req, res, next) {
  };
 
  /**
-  * GET /projectnames
-  * JSON accounts api
+  * Retunerar JSON med alla projektnamn.
   */
  exports.projectNames = function (req, res) {
      Project.find({},
@@ -158,8 +184,7 @@ exports.postJob = function (req, res, next) {
  };
 
  /**
-  * GET /projectnames
-  * JSON accounts api
+  * Retunerar JSON Object med alla project om projektet är aktiverat.
   */
  exports.projectNamesEnable = function (req, res) {
      Project.find({ enable: true },
@@ -173,7 +198,8 @@ exports.postJob = function (req, res, next) {
  };
 
 /**
- *
+ * Retunerar JSON med alla jobb en användare har gjort.
+ * @param clickedUser
  */
  exports.projectUserJobs = function (req, res) {
      Project.aggregate([
@@ -192,7 +218,6 @@ exports.postJob = function (req, res, next) {
                 jobs: 1
             }
          },
-         // Kolla mer på :P :P:P :P:PS:DPSD:
          {
             $unwind: '$jobs'
          },
@@ -218,8 +243,7 @@ exports.postJob = function (req, res, next) {
 
 
  /**
-  * GET
-  *
+  * Retunerar JSON med alla information om projektet utom alla jobbs som har gjort på det.
   */
  exports.projectsInfo = function (req, res) {
      Project.find({
@@ -234,7 +258,8 @@ exports.postJob = function (req, res, next) {
  };
 
 /**
- *
+ * Tar bort projeket
+ * @param projectname
  */
 exports.postDeleteProject = function (req, res, next) {
     Project.remove({
@@ -249,7 +274,9 @@ exports.postDeleteProject = function (req, res, next) {
 };
 
 /*
- *
+ * Byter bool värde på enable.
+ * Aktiverar/Pausar projekt.
+ * @param enable
  */
 exports.changeEnable = function (req, res, next) {
     Project.findOneAndUpdate({
