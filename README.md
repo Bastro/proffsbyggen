@@ -1,9 +1,11 @@
 Proffsbyggen
 --------------
 School Project
+-Commensts in swedish
 
-Getting Started, need npm and node installed
+Getting Started
 ---------------
+Need npm and node installed
 
 ```bash
 cd proffsbyggen
