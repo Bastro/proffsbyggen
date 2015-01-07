@@ -1,11 +1,10 @@
 Proffsbyggen
 --------------
 School Project
--Commensts in swedish
 
 Getting Started
 ---------------
-Need npm and node installed
+* Need npm and node installed
 
 ```bash
 cd proffsbyggen
@@ -19,26 +18,27 @@ node app.js
 
 Technology
 ----------
-| On The Server     | On The Client  | Development | 
-| -------------     | -------------- | ----------- |
-| Node/NPM          | Foundation     | Bower       |
-| Express           | Font-Awesome   |             |
-| Swig              | jQuery         |             |
-| Mongoose          |                |             |
-| Body-parser       |                |             |
-| Cookie-parser     |                |             |
-| Compression       |                |             |
-| Helmet            |                |             |
-| Connect-mongo     |                |             |
-| express-validator |                |             |
-| express-flash     |                |             |
-| Errorhandler      |                |             |
-| Express-session   |                |             |
-| Method-override   |                |             |
-| Moment            |                |             |
-| Mmorgan           |                |             |
-| Express-session   |                |             |
-| passport          |                |             |
+| On The Server     | On The Client  |
+| -------------     | -------------- |
+| Node/NPM          | Foundation     |
+| Express           | Font-Awesome   |
+| Swig              | jQuery         |
+| Mongoose          |                |
+| Body-parser       |                |
+| Cookie-parser     |                |
+| Compression       |                |
+| Helmet            |                |
+| Connect-mongo     |                |
+| express-validator |                |
+| express-flash     |                |
+| Errorhandler      |                |
+| Express-session   |                |
+| Method-override   |                |
+| Moment            |                |
+| Mmorgan           |                |
+| Express-session   |                |
+| passport          |                |
+| Bower             |                |
 
 Project Structure
 -----------------
