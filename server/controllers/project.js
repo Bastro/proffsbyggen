@@ -174,7 +174,7 @@ exports.postJob = function (req, res, next) {
   * Sorterar även så det äldsta projektet kommer först om det är en 1, tvärtom med -1
   */
  exports.projectNames = function (req, res) {
-     Project.find({},
+     Project.find({ enable: true},
     { name: 1, _id: 0 },
     { sort : { date: 1 } },
     function (err, items) {

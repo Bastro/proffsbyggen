@@ -162,10 +162,14 @@ exports.postDeleteAccount = function (req, res, next) {
 };
 
 /**
- * Retunerar alla användare
+ * Retunerar alla användare med endast fältet username
  */
 exports.accountlist = function (req, res) {
-    User.find({}, function (err, items) {
+    User.find({
+
+    },
+    { username: 1, _id: 0},
+    function (err, items) {
         if (err) {
             return (err, null);
         }
