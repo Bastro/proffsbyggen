@@ -171,10 +171,12 @@ exports.postJob = function (req, res, next) {
 
  /**
   * Retunerar JSON med alla projektnamn.
+  * Sorterar även så det äldsta projektet kommer först om det är en 1, tvärtom med -1
   */
  exports.projectNames = function (req, res) {
      Project.find({},
-    { name: 1, _id: 0},
+    { name: 1, _id: 0 },
+    { sort : { date: 1 } },
     function (err, items) {
          if (err) {
              return (err, null);

@@ -33,7 +33,6 @@ var projectSchema = new mongoose.Schema({
         organizationNumber: String,
         apartmentRental: String // Lägenhetsnummer
     },
-
     jobs: [{
         username: String,
         workActivities: String,
@@ -41,7 +40,11 @@ var projectSchema = new mongoose.Schema({
         hours: String,
         trips: String,
         date: String
-    }]
+    }],
+    date : {
+        type : Date,
+        default: Date.now
+    }
 });
 
 module.exports = mongoose.model('Project', projectSchema);

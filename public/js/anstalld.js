@@ -2,7 +2,7 @@
 // Väljer språk och dagens datum som första val
 $(function () {
     $('#dp3').fdatepicker({
-        language: "sv",
+        language: 'swe',
         todayHighlight: true
     });
 });
