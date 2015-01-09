@@ -93,7 +93,8 @@ exports.postSignup = function (req, res, next) {
     // Skapar ett user object med datan från form input i html
     var user = new User({
         username: req.body.username,
-        password: req.body.password
+        password: req.body.password,
+        enable: true
     });
 
     User.findOne({

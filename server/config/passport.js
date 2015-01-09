@@ -23,7 +23,8 @@ passport.use(new LocalStrategy({
     usernameField: 'username'
 }, function (username, password, done) {
     User.findOne({
-        username: username
+        username: username,
+        enable: true
     }, function (err, user) {
         if (!user) return done(null, false, {
             message: 'Användare ' + username + ' finns inte.'
@@ -33,7 +34,7 @@ passport.use(new LocalStrategy({
                 return done(null, user);
             } else {
                 return done(null, false, {
-                    message: 'Fel email eller lösenord.'
+                    message: 'Fel lösenord.'
                 });
             }
         });
