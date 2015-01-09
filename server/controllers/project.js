@@ -81,7 +81,7 @@ exports.postProject = function (req, res, next) {
     });
 
     Project.findOne({
-        name: req.body.project
+        name: req.body.name
     }, function (err, existingProject) {
         if (existingProject) {
             req.flash('errors', {
