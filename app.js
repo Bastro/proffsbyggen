@@ -225,6 +225,7 @@ app.get('/nyanvandare', passportConf.isAdministrator, passportConf.isAuthenticat
 app.post('/nyanvandare', passportConf.isAdministrator, passportConf.isAuthenticated, userController.postSignup);
 app.delete('/deleteuser/:username', passportConf.isAdministrator, passportConf.isAuthenticated, userController.postDeleteAccount);
 app.post('/nyttlosenord', passportConf.isAdministrator, passportConf.isAuthenticated, userController.postUpdatePassword);
+app.get('/accountlistexceptuser', passportConf.isAdministrator, passportConf.isAuthenticated, userController.accountListExceptUser);
 
 app.get('/admin', passportConf.isAdministrator, passportConf.isAuthenticated, homeController.admin);
 app.get('/kundform', passportConf.isAdministrator, passportConf.isAuthenticated, passportConf.isAdministrator, homeController.kundForm);

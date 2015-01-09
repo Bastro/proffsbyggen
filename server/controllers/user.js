@@ -174,6 +174,25 @@ exports.accountlist = function (req, res) {
 };
 
 /**
+ * Retunerar alla användare all info utom den man är inloggad på
+ */
+exports.accountListExceptUser = function (req, res) {
+    User.find({}, function (err, items) {
+        if (err) {
+            return (err, null);
+        }
+        // Tar bort inloggade användaren från json
+        for (var i = 0; i < items.length; i++) {
+            if (items[i].username === req.user.username) {
+                items.splice(i, 1);
+            }
+        }
+
+        res.json(items);
+    });
+};
+
+/**
  * Tar bort användaren
  * @param id
  */

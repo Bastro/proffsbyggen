@@ -5,7 +5,7 @@ $(document).ready(function () {
 
     // Lägger in alla värden i tablet.
     function popTable() {
-        $.getJSON('/accountlist', function (data) {
+        $.getJSON('/accountListExceptUser', function (data) {
 
             var tableContent = '';
 
