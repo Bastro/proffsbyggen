@@ -24,7 +24,7 @@ $(document).ready(function () {
     function popTable(projectName) {
         var tableContent = '';
 
-        $.getJSON('/projectlist/' + projectName + '', function (data) {
+        $.getJSON('/project/' + projectName + '', function (data) {
             var jobs = (data.jobs);
 
             // Lägger till alla job i tableContent strängen

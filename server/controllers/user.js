@@ -206,3 +206,18 @@ exports.deleteUser = function (req, res) {
         _id: req.params.id
     });
 };
+
+/*
+ * Byter bool värde på enable.
+ * Aktiverar/Pausar user.
+ * @param enable
+ * @param username
+ */
+exports.changeEnableUser = function (req, res, next) {
+    User.findOneAndUpdate({
+        username: req.body.username
+    }, { $set: { enable: req.body.enable } },
+    function(err){
+        if (err) return next(err);
+    });
+};

@@ -155,13 +155,20 @@ exports.postJob = function (req, res, next) {
 
  /**
   * Retunerar JSON object med alla jobbs från ett projekt.
+  * Sorterar även så det äldsta projektet kommer först om det är en 1, tvärtom med -1
   * @param projectname
   */
- exports.projectList = function (req, res) {
+ exports.project = function (req, res) {
      Project.findOne({
         name: req.params.projectname
-     }, { jobs: 1, _id: 0},
-    function (err, items) {
+     }, {
+         jobs: 1,
+         _id: 0
+     }, {
+         sort :{
+             date: 1
+         }
+     }, function (err, items) {
          if (err) {
              return (err, null);
          }
@@ -232,7 +239,7 @@ exports.postJob = function (req, res, next) {
          // Sorterar alla job efter datum
          {
             $sort: {
-                'jobs.date': 1
+                'jobs.date': -1
             }
          }
     ], function (err, items) {
@@ -246,12 +253,19 @@ exports.postJob = function (req, res, next) {
 
  /**
   * Retunerar JSON med alla information om projektet utom alla jobbs som har gjort på det.
+  * Sorterar även så det äldsta projektet kommer först om det är en 1, tvärtom med -1
   */
  exports.projectsInfo = function (req, res) {
      Project.find({
 
-     }, { jobs: 0, _id: 0},
-    function (err, items) {
+     }, {
+         jobs: 0,
+         _id: 0
+     }, {
+         $sort: {
+            'date': 1
+        }
+     }, function (err, items) {
          if (err) {
              return (err, null);
          }
@@ -280,7 +294,7 @@ exports.postDeleteProject = function (req, res, next) {
  * Aktiverar/Pausar projekt.
  * @param enable
  */
-exports.changeEnable = function (req, res, next) {
+exports.changeEnableProject = function (req, res, next) {
     Project.findOneAndUpdate({
         name: req.body.projectName
     }, { $set: { enable: req.body.enable } },
