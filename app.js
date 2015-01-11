@@ -155,8 +155,8 @@ app.get('/projectnamesenable', passportConf.isAuthenticated, projectController.p
 app.post('/anstalld', passportConf.isAuthenticated, projectController.postJob);
 
 // Tillgänglig admin
-app.get('/nyanvandare', userController.getSignup);
-app.post('/nyanvandare', userController.postSignup);
+app.get('/nyanvandare', userController.getSignup); // Måste få in första usern, Lägger till säkerheten efter
+app.post('/nyanvandare', userController.postSignup); // Måste få in första user, Lägger till säkerheten efter
 app.delete('/deleteuser/:username', passportConf.isAdministrator, passportConf.isAuthenticated, userController.postDeleteAccount);
 app.post('/nyttlosenord', passportConf.isAdministrator, passportConf.isAuthenticated, userController.postUpdatePassword);
 app.get('/accountlistexceptuser', passportConf.isAdministrator, passportConf.isAuthenticated, userController.accountListExceptUser);
