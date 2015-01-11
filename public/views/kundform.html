@@ -12,6 +12,8 @@
     </div>
 </div>
 <form method="POST">
+    <!-- CSRF Säkerhetsåtgärd -->
+    <input type="hidden" name="_csrf" value={{ _csrf }} />
     <!-- row -->
     <div class="row">
         <div class="large-6 columns">
@@ -21,7 +23,9 @@
         </div>
         <div class="large-6 columns">
             <br/>
-            <input id="checkbox1" type="checkbox" name="private">
+            <!-- 1 hidden och 2 input har samma värde för att man inte går nå värde från checkbox om den inte är i klickad annars -->
+            <input id="checkbox1" type="hidden" name="private" value="nej">
+            <input id="checkbox1" type="checkbox" name="private" value="ja">
             <label for="checkbox1">Privat</label>
         </div>
     </div>

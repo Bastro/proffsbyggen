@@ -11,6 +11,8 @@
 {% endblock %}
 {% block content %}
 <form method="post" id="login">
+    <!-- CSRF Säkerhetsåtgärd -->
+    <input type="hidden" name="_csrf" value={{ _csrf }} />
     <!-- row -->
     <div class="row">
         <center>

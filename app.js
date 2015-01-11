@@ -14,6 +14,7 @@ var session = require('express-session');               // https://github.com/ex
 var bodyParser = require('body-parser');                // https://github.com/expressjs/body-parser
 var logger = require('morgan');                         // https://github.com/expressjs/morgan
 var methodOverride = require('method-override');        // https://github.com/expressjs/method-override
+var csrf = require('csurf');                            // https://github.com/expressjs/csurf
 // Ytterligare moduler                                  ----------------------------------------------------------
 var MongoStore = require('connect-mongo')(session);     // https://github.com/kcbanner/connect-mongo
 var flash = require('express-flash');                   // https://github.com/RGBboy/express-flash
@@ -104,12 +105,12 @@ app.use(session({
  * Säkerhets åtgärder
  */
 app.disable('x-powered-by');          // Ger inte ut vilken server som används på sidan
-//app.use(csrf());                      // Prevent Cross-Site Request Forgery
-/*app.use(helmet.crossdomain());        // Serve crossdomain.xml policy
-app.use(helmet.ienoopen());           // X-Download-Options for IE8+
-app.use(helmet.nosniff());            // Sets X-Content-Type-Options to nosniff
-app.use(helmet.xssFilter());          // sets the X-XSS-Protection header
-app.use(helmet.frameguard('deny'));   // Prevent iframe clickjacking*/
+app.use(csrf());                      // Undviker Cross-Site Request Forgery attack
+app.use(helmet.crossdomain());        // Crossdomain.xml policy
+app.use(helmet.ienoopen());           // X-Download-alternativ för IE8+
+app.use(helmet.nosniff());            // X-Content-Type-Options till nosniff
+app.use(helmet.xssFilter());          // X-XSS-Protection header
+app.use(helmet.frameguard('deny'));   // Undviker iframe clickjacking
 
 // Använder modulen Passport.js för att sköta logins
 app.use(passport.initialize());
@@ -121,6 +122,8 @@ app.use(flash());
 app.use(function (req, res, next) {
     // Gör user global för sidorna
     res.locals.user = req.user;
+    // Så man får in csrf i view'en
+    res.locals._csrf = req.csrfToken();
     // Går vidare till nästa middleware
     next();
 });

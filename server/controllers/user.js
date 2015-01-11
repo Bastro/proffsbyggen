@@ -15,7 +15,6 @@ exports.getLogin = function (req, res) {
             return res.redirect('/anstalld');
         }
     }
-    // fixa lika på post login sen
     res.render('index', {
         title: 'Login'
     });
@@ -81,7 +80,6 @@ exports.getSignup = function (req, res) {
 exports.postSignup = function (req, res, next) {
     req.assert('username', 'Användarnamnet måste minst ha 3 tecken.').len(3);
     req.assert('password', 'Lösenordet måste minst ha 4 tecken.').len(4);
-    //req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
 
     var errors = req.validationErrors();
 

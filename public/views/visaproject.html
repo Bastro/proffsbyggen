@@ -1,20 +1,28 @@
 {% extends 'head.html' %} {% block content %}
+<!-- row -->
 <div class="row">
     <h1 class="large-12 small-centered columns"><small>Projekt</small></h1>
 </div>
+<!-- row -->
+<div class="row">
+    <div class="columns">
+        <button href="#" class="tiny round button information">Adresser</button>
+        <button href="#" class="tiny round button information">Namn</button>
+        <button href="#" class="tiny round button information">Annat</button>
+    </div>
+</div>
+<!-- row -->
 <div class="row">
     <div class="columns">
         <table class="width-100 responsive">
             <thead>
-                <tr>
+                <tr id="thead">
                     <th class="text-center">Namn</th>
                     <th class="text-center">Gata</th>
                     <th class="text-center">Postnummer</th>
                     <th class="text-center">Stad</th>
                     <th class="text-center">Telefon</th>
                     <th class="text-center">Fastighet</th>
-                    <th class="text-center">Rot</th>
-                    <th class="text-center">Org nr</th>
                     <th class="text-center">Lägenhet</th>
                     <th class="text-center">Aktivera / Ta bort</th>
                 </tr>

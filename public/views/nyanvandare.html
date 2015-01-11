@@ -1,6 +1,8 @@
 {% extends 'head.html' %}
 {% block content %}
 <form method="POST">
+    <!-- CSRF Säkerhetsåtgärd -->
+    <input type="hidden" name="_csrf" value={{ _csrf }} />
     <!-- row -->
     <div class="row">
         <div class="large-6 large-centered columns end">

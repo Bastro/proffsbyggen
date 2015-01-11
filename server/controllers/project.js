@@ -25,6 +25,7 @@ var Project = require('../models/Project');
 exports.postProject = function (req, res, next) {
     // Validerar input och skickar felmeddelande.
     req.assert('name', 'Projektet måste ha ett namn.').len(1);
+    // Kan lägga till vilka koller man vill ha här på vad man får från användare
     //req.assert('private', ''); // !!!!!!Lägg till i project object
     //req.assert('firstName1', '');
     //req.assert('personalCode1', '');
@@ -53,6 +54,8 @@ exports.postProject = function (req, res, next) {
         name: req.body.name,
         enable: false,
         private: false,
+        rotdeduction: req.body.rotdeduction,
+        organizationNumber: req.body.organizationNumber,
         customer: [
             {
                 firstname: req.body.firstName1,
@@ -73,8 +76,6 @@ exports.postProject = function (req, res, next) {
             city: req.body.city,
             phoneNumber: req.body.phoneNumber,
             cadastral: req.body.cadastral, // Fastighetsbeteckning
-            rotdeduction: req.body.rotdeduction,
-            organizationNumber: req.body.organizationNumber,
             apartmentRental: req.body.apartmentRental // Lägenhetsnummer
         },
         jobs: []
@@ -112,10 +113,11 @@ exports.postProject = function (req, res, next) {
 exports.postJob = function (req, res, next) {
     req.assert('project', '').len(1);
     req.assert('workActivities', 'Du lär skriva vad du gjort.').len(1);
-    req.assert('busMaterials', '');
-    req.assert('hours', '');
-    req.assert('trips', '');
-    req.assert('date', '');
+    // Kan lägga till vilka koller man vill ha här på vad man får från användare
+    //req.assert('busMaterials', '');
+    //req.assert('hours', '');
+    //req.assert('trips', '');
+    //req.assert('date', '');
 
 
     var errors = req.validationErrors();

@@ -3,8 +3,11 @@
 
 <head>
     <meta charset="utf-8" />
+    <!-- x-csrf-token säkehetsåtgärd -->
+    <meta name="x-csrf-token", content="{{ _csrf }}" />
     <!-- För mobilen -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable", content="yes" />
     <title>Proffsbyggen</title>
 
     {% block script %}

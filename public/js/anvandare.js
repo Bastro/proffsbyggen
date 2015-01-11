@@ -91,13 +91,9 @@ $(document).ready(function () {
         $.ajax({
             url: '/userchangeenable',
             type: 'POST',
-            data: data,
-            success: function () {
-                console.log('succes');
-            },
-            error: function () {
-                console.log('fail');
-            }
+            //- headers: { 'X-CSRF-Token': '{{token}}' },
+            headers: { 'X-CSRF-Token': $('meta[name="x-csrf-token"]').attr('content')},
+            data: data
         });
         // Timeout så ingen crashar
         window.setTimeout(popTable, 500);
@@ -108,7 +104,9 @@ $(document).ready(function () {
         // Använder ajax för att ta bort användaren
         $.ajax({
             type: 'DELETE',
-            url: '/deleteuser/' + username
+            url: '/deleteuser/' + username,
+            //- headers: { 'X-CSRF-Token': '{{token}}' },
+            headers: { 'X-CSRF-Token': $('meta[name="x-csrf-token"]').attr('content')},
             // Får ett promis när ajax requesten är klar
         }).done(function (response) {
             // Kollar om det gick och ta bort användaren, annars skickar ett felmedelenade

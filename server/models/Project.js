@@ -17,6 +17,8 @@ var projectSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    rotdeduction: String,
+    organizationNumber: String,
     customer: [{
         firstName: String,
         lastName: String,
@@ -29,8 +31,6 @@ var projectSchema = new mongoose.Schema({
         city: String,
         phoneNumber: String,
         cadastral: String, // Fastighetsbeteckning
-        rotdeduction: String,
-        organizationNumber: String,
         apartmentRental: String // Lägenhetsnummer
     },
     jobs: [{
