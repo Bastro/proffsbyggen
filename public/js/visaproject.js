@@ -4,36 +4,7 @@ $(document).ready(function () {
 
     function popTable() {
 
-        adressInfo();
-
-        $('.deleteProject').on('click', function () {
-            var projectName = $(this).attr('data-name');
-            createModal(projectName);
-        });
-
-        $('.activateProject').on('click', function () {
-            var projectName = $(this).attr('data-name');
-            var enable = $(this).attr('data-enable');
-            changeEable(projectName, enable);
-        });
-    };
-
-    function adressInfo() {
         $.getJSON('/projectsinfo', function (data) {
-            var theadContent = '';
-
-            /*theadContent += '<th class="text-center">Namn</th>';
-            theadContent += '<th class="text-center">Gata</th>';
-            theadContent += '<th class="text-center">Postnummer</th>';
-            theadContent += '<th class="text-center">Stad</th>';
-            theadContent += '<th class="text-center">Telefon</th>';
-            theadContent += '<th class="text-center">Fastighet</th>';
-            theadContent += '<th class="text-center">Lägenhet</th>';
-            theadContent += '<th class="text-center">Aktivera / Ta bort</th>';
-
-            $('#thead').empty();
-            $('#thead').append(theadContent);*/
-
             var tableContent = '';
 
             $.each(data, function () {
@@ -64,7 +35,18 @@ $(document).ready(function () {
             $('#userList').empty();
             $('#userList').append(tableContent);
         });
-    }
+
+        $('.deleteProject').on('click', function () {
+            var projectName = $(this).attr('data-name');
+            createModal(projectName);
+        });
+
+        $('.activateProject').on('click', function () {
+            var projectName = $(this).attr('data-name');
+            var enable = $(this).attr('data-enable');
+            changeEable(projectName, enable);
+        });
+    };
 
     function createModal(projectName) {
         var modalContent = '';

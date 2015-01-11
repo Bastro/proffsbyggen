@@ -66,13 +66,13 @@ exports.postProject = function (req, res, next) {
         organizationNumber: req.body.organizationNumber,
         customer: [
             {
-                firstname: req.body.firstName1,
+                firstName: req.body.firstName1,
                 lastName: req.body.lastName1,
                 personalCode: req.body.personalCode1,
                 email: req.body.email
             },
             {
-                firstname: req.body.firstName2,
+                firstName: req.body.firstName2,
                 lastName: req.body.lastName2,
                 personalCode: req.body.personalCode2,
                 email: req.body.email
