@@ -14,8 +14,8 @@ var projectSchema = new mongoose.Schema({
         default: false
     },
     private: {
-        type: Boolean,
-        default: false
+        type: String,
+        default: 'nej'
     },
     rotdeduction: String,
     organizationNumber: String,
